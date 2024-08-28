@@ -1,6 +1,6 @@
 import { Users } from 'src/users/entities/users.entity';
 import { Column, Entity, ManyToOne,PrimaryGeneratedColumn} from 'typeorm';
-import { Phrase } from './phrase.entity';
+import { Phrase } from '../../phrase/entities/phrase.entity';
 
 @Entity()
 export class PhraseToUsers{
