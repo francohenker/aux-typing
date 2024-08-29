@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="auth-container">
+        <h2>Login / Register</h2>
+        <button className="auth-button">Login</button>
+        <button className="auth-button">Register</button>
+      </div>
+      <div className="challenges-container">
+        <h2>Challenges</h2>
+        <div className="challenges-grid">
+            {Array.from({ length: 10}).map((_, index) => (
+              <div key={index} className="challenge-box">
+                Challenge {index + 1}
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
-  );
-}
+  )
+};
 
 export default App;
