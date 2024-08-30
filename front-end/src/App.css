@@ -45,3 +45,12 @@
     @apply font-heading;
   }
 }
+
+@layer utilities {
+  .bg-background {
+    background-color: #333; /* Replace with your color */
+  }
+  .text-foreground {
+    color: #856c6c;
+  }
+}
