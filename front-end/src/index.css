@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +14,35 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --orange-primary: #FF8C00;
+  --orange-light: #FFD580;
+  --orange-dark: #E67E22;
+}
+
+/* Aplicar colores personalizados */
+.bg-orange-50 {
+  background-color: var(--orange-light);
+}
+
+.bg-orange-100 {
+  background-color: var(--orange-light);
+}
+
+.bg-orange-200 {
+  background-color: var(--orange-primary);
+}
+
+.bg-orange-500 {
+  background-color: var(--orange-primary);
+}
+
+.bg-orange-600 {
+  background-color: var(--orange-dark);
+}
+
+.text-orange-600 {
+  color: var(--orange-primary);
 }
