@@ -1,3 +1,8 @@
 backend/node_modules
+<<<<<<< HEAD
 backend/dist
 dbStructure
+=======
+front-end/node_modules
+.gitattributes
+>>>>>>> chises
