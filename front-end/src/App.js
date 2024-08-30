@@ -1,10 +1,18 @@
-import React from 'react';
-import './index.css'; // Asegúrate de importar el CSS de Tailwind
+import React, { useState } from 'react';
+import './index.css'; 
+import LeaderBoard from './LeaderBoard';
 
 function App() {
   const handleChallengeClick = (challengeNumber) => {
     console.log(`Desafío ${challengeNumber} clickeado`);
   };
+
+  // Estado para almacenar la lista de usuarios y sus puntajes
+  const [users, setUsers] = useState([
+    { name: 'Usuario1', score: 95 },
+    { name: 'Usuario2', score: 88 },
+    { name: 'Usuario3', score: 76 },
+  ]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-white p-6">
@@ -37,6 +45,11 @@ function App() {
             </button>
           </div>
         </div>
+      </div>
+
+      {/* Componente LeaderBoard */}
+      <div className="w-full max-w-4xl mt-6 font-semibold">
+        <LeaderBoard users={users} />
       </div>
     </div>
   );
