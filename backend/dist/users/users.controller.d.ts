@@ -4,4 +4,5 @@ export declare class UsersController {
     private usersService;
     constructor(usersService: UsersService);
     findAll(): Promise<Users[]>;
+    create(user: Users): Promise<Users>;
 }

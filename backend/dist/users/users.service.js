@@ -24,6 +24,9 @@ let UsersService = class UsersService {
     async findAll() {
         return await this.usersRepository.find();
     }
+    async create(user) {
+        return await this.usersRepository.save(user);
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([

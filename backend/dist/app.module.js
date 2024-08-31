@@ -10,7 +10,6 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
-<<<<<<< HEAD
 const typeorm_1 = require("@nestjs/typeorm");
 const users_entity_1 = require("./users/entities/users.entity");
 const users_module_1 = require("./users/users.module");
@@ -24,14 +23,11 @@ const phrase_to_users_entity_1 = require("./phrase-to-user/entities/phrase-to-us
 const phrase_to_user_module_1 = require("./phrase-to-user/phrase-to-user.module");
 const phrase_to_user_controller_1 = require("./phrase-to-user/phrase-to-user.controller");
 const phrase_to_user_service_1 = require("./phrase-to-user/phrase-to-user.service");
-=======
->>>>>>> chises
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-<<<<<<< HEAD
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'sqlite',
@@ -47,11 +43,6 @@ exports.AppModule = AppModule = __decorate([
         ],
         controllers: [app_controller_1.AppController, users_controller_1.UsersController, phrase_controller_1.PhraseController, phrase_to_user_controller_1.PhraseToUserController],
         providers: [app_service_1.AppService, users_service_1.UsersService, phrase_service_1.PhraseService, phrase_to_user_service_1.PhraseToUserService],
-=======
-        imports: [],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
->>>>>>> chises
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
