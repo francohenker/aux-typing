@@ -12,6 +12,11 @@ export class UsersController {
         return await this.usersService.findAll();
     }
 
+    @Get('max-wpm')
+    async getMaxWpmPerUser(): Promise<any> {
+        return await this.usersService.getMaxWpm();
+    }
+
     @Post()
     async create(@Body() user: Users): Promise<Users> {
         return await this.usersService.create(user);

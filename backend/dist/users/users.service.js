@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_entity_1 = require("./entities/users.entity");
 const typeorm_2 = require("typeorm");
+const phrase_to_users_entity_1 = require("../phrase-to-user/entities/phrase-to-users.entity");
 let UsersService = class UsersService {
-    constructor(usersRepository) {
+    constructor(usersRepository, PhraseToUsersRepository) {
         this.usersRepository = usersRepository;
+        this.PhraseToUsersRepository = PhraseToUsersRepository;
     }
     async findAll() {
         return await this.usersRepository.find();
@@ -27,11 +29,24 @@ let UsersService = class UsersService {
     async create(user) {
         return await this.usersRepository.save(user);
     }
+    async getMaxWpm() {
+        return await this.PhraseToUsersRepository
+            .createQueryBuilder('utp')
+            .select('utp.user', 'user_id')
+            .addSelect('MAX(utp.wpm)', 'max_wpm')
+            .innerJoin('utp.user', 'u')
+            .addSelect('u.nickname', 'nickname')
+            .groupBy('utp.user')
+            .addGroupBy('u.nickname')
+            .getRawMany();
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(users_entity_1.Users)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(phrase_to_users_entity_1.PhraseToUsers)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

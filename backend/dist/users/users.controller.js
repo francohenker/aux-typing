@@ -23,6 +23,9 @@ let UsersController = class UsersController {
     async findAll() {
         return await this.usersService.findAll();
     }
+    async getMaxWpmPerUser() {
+        return await this.usersService.getMaxWpm();
+    }
     async create(user) {
         return await this.usersService.create(user);
     }
@@ -34,6 +37,12 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)('max-wpm'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "getMaxWpmPerUser", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
