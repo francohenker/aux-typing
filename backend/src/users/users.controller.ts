@@ -1,12 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('users')
 export class UsersController {
 
-    constructor(private usersService: UsersService) {}
+    constructor(private readonly usersService: UsersService) {}
 
     @Get()
     async findAll(): Promise<Users[]> {
@@ -21,17 +22,26 @@ export class UsersController {
 
 
     @Post('/create')
-    async create(@Body() createUserDto: CreateUserDto): Promise<Users> {
+    @UsePipes(new ValidationPipe({transform: true}))
+    async create(@Body() user: CreateUserDto): Promise<Users> {
         try{
-            return await this.usersService.create(createUserDto);
+            return await this.usersService.create(user);
         }catch(error){
             console.log(error);
         }
     }
 
     @Post('/login')
-    async login(@Body() user: Users): Promise<Users> {
-        return await this.usersService.login(user);
+    @UsePipes(new ValidationPipe({transform: true}))
+    async login(@Body() user: LoginUserDto): Promise<Users> {
+        try{
+            return await this.usersService.login(user);
+        }catch(error){
+            console.log(error);
+        }
     }
+
+
+
 
 }

@@ -1,11 +1,12 @@
 import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 export declare class UsersController {
-    private usersService;
+    private readonly usersService;
     constructor(usersService: UsersService);
     findAll(): Promise<Users[]>;
     getMaxWpmPerUser(): Promise<any>;
-    create(createUserDto: CreateUserDto): Promise<Users>;
-    login(user: Users): Promise<Users>;
+    create(user: CreateUserDto): Promise<Users>;
+    login(user: LoginUserDto): Promise<Users>;
 }

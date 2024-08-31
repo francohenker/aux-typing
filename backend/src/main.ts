@@ -7,9 +7,9 @@ async function bootstrap() {
   await app.listen(4000);
   
   app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,        // Elimina los campos no definidos en el DTO
+    transform: true,
     forbidNonWhitelisted: true, // Lanza un error si hay campos no permitidos
-    transform: true,        // Transforma los tipos de datos a los especificados en el DTO
+    whitelist: true, // Permite solo campos en la entidad del dto
   }));
 
 }

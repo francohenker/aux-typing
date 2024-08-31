@@ -26,15 +26,30 @@ let UsersService = class UsersService {
     async findAll() {
         return await this.usersRepository.find();
     }
-    async create(CreateUserDto) {
-        const user = await this.usersRepository.findOneBy({
-            nickname: CreateUserDto.nickname,
+    async getUserByName(name) {
+        return await this.usersRepository.findOneBy({
+            nickname: name,
         });
-        if (user) {
+    }
+    async getUserById(id) {
+        return await this.usersRepository.findOneBy({
+            id: id,
+        });
+    }
+    async create(user) {
+        const userSearch = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+        if (userSearch) {
             throw new Error('User already exists');
         }
-        const userNew = this.usersRepository.create(CreateUserDto);
-        return await this.usersRepository.save(userNew);
+        try {
+            const userNew = this.usersRepository.create(user);
+            return await this.usersRepository.save(userNew);
+        }
+        catch (error) {
+            console.log(error);
+        }
     }
     async getMaxWpm() {
         return await this.PhraseToUsersRepository
@@ -48,7 +63,13 @@ let UsersService = class UsersService {
             .getRawMany();
     }
     async login(user) {
-        return await this.usersRepository.save(user);
+        const userNew = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+        if (!userNew) {
+            throw new Error('User not found');
+        }
+        return userNew;
     }
 };
 exports.UsersService = UsersService;

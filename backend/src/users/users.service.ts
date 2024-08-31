@@ -1,9 +1,10 @@
-import { HttpCode, Injectable } from '@nestjs/common';
+import { Body, HttpCode, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -20,19 +21,34 @@ export class UsersService {
         return await this.usersRepository.find();
     }
 
-    async create(CreateUserDto: CreateUserDto): Promise<Users> {
-        const user = await this.usersRepository.findOneBy({
-            nickname: CreateUserDto.nickname,
+    async getUserByName(name: string): Promise<Users> {
+        return await this.usersRepository.findOneBy({
+            nickname: name,
+        });
+    }
+
+    async getUserById(id: number): Promise<Users> {
+        return await this.usersRepository.findOneBy({
+            id: id,
+        });
+    }
+
+    async create(user: CreateUserDto): Promise<Users> { 
+        
+        const userSearch = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
         });
         
-        if (user) {
+        if (userSearch) {
             throw new Error('User already exists');
         }
-        const userNew = this.usersRepository.create(CreateUserDto);
-        return await this.usersRepository.save(userNew);
-            
-            
         
+        try{
+            const userNew = this.usersRepository.create(user);
+            return await this.usersRepository.save(userNew);
+        }catch(error){
+            console.log(error);
+        }     
         
     }
 
@@ -49,8 +65,16 @@ export class UsersService {
           .getRawMany();
     }
 
-    async login(user: Users): Promise<Users> {
-        return await this.usersRepository.save(user);
+    async login(user: LoginUserDto): Promise<Users> {
+        const userNew = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+        if(!userNew){
+            throw new Error('User not found');
+            
+        }
+        // return await this.usersRepository.save(user);
+        return userNew;
     }
     
 }
