@@ -26,8 +26,15 @@ let UsersService = class UsersService {
     async findAll() {
         return await this.usersRepository.find();
     }
-    async create(user) {
-        return await this.usersRepository.save(user);
+    async create(CreateUserDto) {
+        const user = await this.usersRepository.findOneBy({
+            nickname: CreateUserDto.nickname,
+        });
+        if (user) {
+            throw new Error('User already exists');
+        }
+        const userNew = this.usersRepository.create(CreateUserDto);
+        return await this.usersRepository.save(userNew);
     }
     async getMaxWpm() {
         return await this.PhraseToUsersRepository
@@ -39,6 +46,9 @@ let UsersService = class UsersService {
             .groupBy('utp.user')
             .addGroupBy('u.nickname')
             .getRawMany();
+    }
+    async login(user) {
+        return await this.usersRepository.save(user);
     }
 };
 exports.UsersService = UsersService;

@@ -16,6 +16,7 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const users_entity_1 = require("./entities/users.entity");
+const create_user_dto_1 = require("./dto/create-user.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -26,8 +27,16 @@ let UsersController = class UsersController {
     async getMaxWpmPerUser() {
         return await this.usersService.getMaxWpm();
     }
-    async create(user) {
-        return await this.usersService.create(user);
+    async create(createUserDto) {
+        try {
+            return await this.usersService.create(createUserDto);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async login(user) {
+        return await this.usersService.login(user);
     }
 };
 exports.UsersController = UsersController;
@@ -44,12 +53,19 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "getMaxWpmPerUser", null);
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('/create'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)('/login'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [users_entity_1.Users]),
     __metadata("design:returntype", Promise)
-], UsersController.prototype, "create", null);
+], UsersController.prototype, "login", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
