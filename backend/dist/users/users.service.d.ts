@@ -13,4 +13,5 @@ export declare class UsersService {
     create(user: CreateUserDto): Promise<Users>;
     getMaxWpm(): Promise<any>;
     login(user: LoginUserDto): Promise<Users>;
+    comparePassword(nickname: string, password: string): Promise<boolean>;
 }

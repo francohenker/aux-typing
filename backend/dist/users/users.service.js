@@ -69,7 +69,17 @@ let UsersService = class UsersService {
         if (!userNew) {
             throw new Error('User not found');
         }
-        return userNew;
+        if (user.password === userNew.password) {
+            return userNew;
+        }
+        throw new Error('User or password incorrect');
+    }
+    async comparePassword(nickname, password) {
+        const pass = this.usersRepository.query('SELECT password FROM users WHERE nickname = ?', [nickname]);
+        if (pass[0] === password) {
+            return true;
+        }
+        return false;
     }
 };
 exports.UsersService = UsersService;

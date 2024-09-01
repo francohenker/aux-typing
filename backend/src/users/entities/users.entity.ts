@@ -24,6 +24,9 @@ export class Users{
       this.password = await bcrypt.hash(this.password, salt);
     }
 
+    
+
+
     constructor(nickname: string, password: string, admin: boolean) {
         this.nickname = nickname;
         this.password = password;
