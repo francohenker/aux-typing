@@ -4,7 +4,7 @@ import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { LoginUserDto } from './dto/login-user.dto';
+import { UserDto } from './dto/login-update-user.dto';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -66,7 +66,7 @@ export class UsersService {
           .getRawMany();
     }
 
-    async login(user: LoginUserDto): Promise<Users> {
+    async login(user: UserDto): Promise<Users> {
         const userNew = await this.usersRepository.findOneBy({
             nickname: user.nickname,
         });
@@ -80,13 +80,26 @@ export class UsersService {
         throw new Error('User or password incorrect');
     }
 
-    async comparePassword(nickname: string, password: string): Promise<boolean> {
-        const pass = this.usersRepository.query('SELECT password FROM users WHERE nickname = ?', [nickname]);
-        if (pass[0] === password) {
-            return true;
+    // async comparePassword(nickname: string, password: string): Promise<boolean> {
+    //     const pass = this.usersRepository.query('SELECT password FROM users WHERE nickname = ?', [nickname]);
+    //     if (pass[0] === password) {
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
+    //modify later
+    async update(user: UserDto): Promise<Users> {
+        const userNew = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+        if(!userNew){
+            throw new Error('User not found');
         }
-        return false;
-        
+
+        if(user.password === userNew.password){
+            return userNew;
+        }
+        throw new Error('User or password incorrect');
     }
-    
 }
