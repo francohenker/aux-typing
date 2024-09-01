@@ -3,4 +3,7 @@ export declare class Users {
     nickname: string;
     password: string;
     admin: boolean;
+    validatePassword(password: string): Promise<boolean>;
+    hashPassword(): Promise<void>;
+    constructor(nickname: string, password: string, admin: boolean);
 }

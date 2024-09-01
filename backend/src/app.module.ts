@@ -14,6 +14,9 @@ import { PhraseToUsers } from './phrase-to-user/entities/phrase-to-users.entity'
 import { PhraseToUserModule } from './phrase-to-user/phrase-to-user.module';
 import { PhraseToUserController } from './phrase-to-user/phrase-to-user.controller';
 import { PhraseToUserService } from './phrase-to-user/phrase-to-user.service';
+import { AuthModule } from './auth/auth.module';
+import { AuthService } from './auth/auth.service';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
   imports: [
@@ -23,12 +26,11 @@ import { PhraseToUserService } from './phrase-to-user/phrase-to-user.service';
       entities: [Users, Phrase, PhraseToUsers],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Users]),
+    TypeOrmModule.forFeature([Users, Phrase, PhraseToUsers]),
     UsersModule,
     PhraseModule,
     PhraseToUserModule,
-    UsersModule,
-    
+       
   ],
   controllers: [AppController, UsersController, PhraseController, PhraseToUserController],
   providers: [AppService, UsersService, PhraseService, PhraseToUserService],

@@ -17,21 +17,77 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_entity_1 = require("./entities/users.entity");
 const typeorm_2 = require("typeorm");
+const phrase_to_users_entity_1 = require("../phrase-to-user/entities/phrase-to-users.entity");
 let UsersService = class UsersService {
-    constructor(usersRepository) {
+    constructor(usersRepository, PhraseToUsersRepository) {
         this.usersRepository = usersRepository;
+        this.PhraseToUsersRepository = PhraseToUsersRepository;
     }
     async findAll() {
         return await this.usersRepository.find();
     }
+    async getUserByName(name) {
+        return await this.usersRepository.findOneBy({
+            nickname: name,
+        });
+    }
+    async getUserById(id) {
+        return await this.usersRepository.findOneBy({
+            id: id,
+        });
+    }
     async create(user) {
-        return await this.usersRepository.save(user);
+        const userSearch = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+        if (userSearch) {
+            throw new Error('User already exists');
+        }
+        try {
+            const userNew = this.usersRepository.create(user);
+            return await this.usersRepository.save(userNew);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async getMaxWpm() {
+        return await this.PhraseToUsersRepository
+            .createQueryBuilder('utp')
+            .select('utp.user', 'user_id')
+            .addSelect('MAX(utp.wpm)', 'max_wpm')
+            .innerJoin('utp.user', 'u')
+            .addSelect('u.nickname', 'nickname')
+            .groupBy('utp.user')
+            .addGroupBy('u.nickname')
+            .getRawMany();
+    }
+    async login(user) {
+        const userNew = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+        if (!userNew) {
+            throw new Error('User not found');
+        }
+        if (user.password === userNew.password) {
+            return userNew;
+        }
+        throw new Error('User or password incorrect');
+    }
+    async comparePassword(nickname, password) {
+        const pass = this.usersRepository.query('SELECT password FROM users WHERE nickname = ?', [nickname]);
+        if (pass[0] === password) {
+            return true;
+        }
+        return false;
     }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(users_entity_1.Users)),
-    __metadata("design:paramtypes", [typeorm_2.Repository])
+    __param(1, (0, typeorm_1.InjectRepository)(phrase_to_users_entity_1.PhraseToUsers)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

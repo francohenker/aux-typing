@@ -11,7 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 const typeorm_1 = require("typeorm");
+const bcrypt = require("bcrypt");
 let Users = class Users {
+    async validatePassword(password) {
+        return await bcrypt.compareSync(password, this.password);
+    }
+    async hashPassword() {
+        const salt = await bcrypt.genSalt();
+        this.password = await bcrypt.hash(this.password, salt);
+    }
+    constructor(nickname, password, admin) {
+        this.nickname = nickname;
+        this.password = password;
+        this.admin = admin;
+    }
 };
 exports.Users = Users;
 __decorate([
@@ -30,7 +43,14 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Boolean)
 ], Users.prototype, "admin", void 0);
+__decorate([
+    (0, typeorm_1.BeforeInsert)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], Users.prototype, "hashPassword", null);
 exports.Users = Users = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)(),
+    __metadata("design:paramtypes", [String, String, Boolean])
 ], Users);
 //# sourceMappingURL=users.entity.js.map
