@@ -1,0 +1,60 @@
+.typing-test-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: white;
+    padding: 20px;
+  }
+  
+  .words-container {
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-align: center;
+    background-color: #FFFAF0;
+    padding: 10px;
+    border: 1px solid #FF8C00;
+    border-radius: 8px;
+  }
+  
+  .typing-input {
+    width: 100%;
+    max-width: 600px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #FF8C00;
+    border-radius: 8px;
+    font-size: 18px;
+  }
+  
+  .wpm-display {
+    margin-top: 20px;
+    font-size: 24px;
+    color: #FF8C00;
+  }
+  
+  .keyboard-container {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    margin-top: 20px;
+  }
+  
+  .key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid #FF8C00;
+    border-radius: 4px;
+    background-color: #FFFAF0;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  
+  .key.highlight {
+    background-color: #FF8C00;
+    color: white;
+  }
+  

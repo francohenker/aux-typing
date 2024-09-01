@@ -1,0 +1,25 @@
+.keyboard {
+    margin-top: 20px;
+  }
+  
+  .keyboard-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+  
+  .keyboard-key {
+    background-color: #ddd;
+    padding: 10px;
+    margin: 2px;
+    border-radius: 4px;
+    font-size: 16px;
+    border: 1px solid #999;
+    width: 30px;
+    text-align: center;
+  }
+  
+  .keyboard-key.highlight {
+    background-color: #ff8c00;
+    color: white;
+  }
