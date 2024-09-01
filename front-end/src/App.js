@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import './index.css'; 
 import LeaderBoardPage from './LeaderBoardPage';
+import TypingTestPage from './TypingTestPage';  // Importa la página de prueba de mecanografía
 
 function App() {
   const handleChallengeClick = (challengeNumber) => {
@@ -31,7 +32,7 @@ function App() {
 
             {/* Sección de inicio de sesión / registro */}
             <div className="bg-white p-6 rounded-lg shadow-md border border-black">
-              <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciar sesión / Registrarse</h2>
+              <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciaasdasdr sesasdasdión / Registrarse</h2>
               <div className="flex flex-col space-y-4">
                 <button className="bg-orange-500 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600 focus:outline-none">
                   Iniciar sesión
@@ -43,17 +44,23 @@ function App() {
             </div>
           </div>
 
-          {/* Botón para redirigir a la página de LeaderBoard */}
-          <div className="w-full max-w-4xl mt-6 font-semibold">
+          {/* Botones para Leaderboard y Test de Tecleo */}
+          <div className="w-full max-w-4xl mt-6 flex justify-center space-x-4 font-semibold">
             <Link to="/leaderboards">
               <button className="bg-orange-500 text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600">
                 Leaderboards
+              </button>
+            </Link>
+            <Link to="/typing-test">
+              <button className="bg-orange-500 text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600">
+                Test de Tecleo
               </button>
             </Link>
           </div>
         </div>
       } />
       <Route path="/leaderboards" element={<LeaderBoardPage />} />
+      <Route path="/typing-test" element={<TypingTestPage />} />  {/* Ruta para la página de prueba de mecanografía */}
     </Routes>
   );
 }
