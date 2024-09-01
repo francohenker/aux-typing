@@ -1,19 +1,19 @@
 import React from 'react';
 
-const LeaderBoard = ({ users }) => {
+function LeaderBoard({ users }) {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md border border-black w-full">
-      <h2 className="text-2xl font-bold text-center mb-4 text-orange-600">LeaderBoard</h2>
-      <ul className="divide-y divide-gray-200">
+    <div className="bg-white p-6 rounded-lg shadow-md border border-black">
+      <h2 className="text-2xl font-bold mb-4 text-orange-600">Tabla de líderes</h2>
+      <ul className="space-y-4">
         {users.map((user, index) => (
-          <li key={index} className="py-2 flex justify-between">
-            <span>{user.name}</span>
-            <span>{user.score}</span>
+          <li key={index} className="flex justify-between items-center bg-orange-100 p-4 rounded-lg shadow-sm border border-black">
+            <span className="text-xl font-semibold">{user.name}</span>
+            <span className="text-xl font-semibold">{user.score}</span>
           </li>
         ))}
       </ul>
     </div>
   );
-};
+}
 
 export default LeaderBoard;
