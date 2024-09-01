@@ -16,7 +16,7 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
-const login_user_dto_1 = require("./dto/login-user.dto");
+const login_update_user_dto_1 = require("./dto/login-update-user.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -38,6 +38,14 @@ let UsersController = class UsersController {
     async login(user) {
         try {
             return await this.usersService.login(user);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+    async update(user) {
+        try {
+            return await this.usersService.update(user);
         }
         catch (error) {
             console.log(error);
@@ -70,9 +78,17 @@ __decorate([
     (0, common_1.UsePipes)(new common_1.ValidationPipe({ transform: true })),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [login_user_dto_1.LoginUserDto]),
+    __metadata("design:paramtypes", [login_update_user_dto_1.UserDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "login", null);
+__decorate([
+    (0, common_1.Post)("/update"),
+    (0, common_1.UsePipes)(new common_1.ValidationPipe({ transform: true })),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [login_update_user_dto_1.UserDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "update", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

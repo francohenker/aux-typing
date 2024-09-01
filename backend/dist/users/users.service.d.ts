@@ -2,7 +2,7 @@ import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
-import { LoginUserDto } from './dto/login-user.dto';
+import { UserDto } from './dto/login-update-user.dto';
 export declare class UsersService {
     private usersRepository;
     private PhraseToUsersRepository;
@@ -12,6 +12,6 @@ export declare class UsersService {
     getUserById(id: number): Promise<Users>;
     create(user: CreateUserDto): Promise<Users>;
     getMaxWpm(): Promise<any>;
-    login(user: LoginUserDto): Promise<Users>;
-    comparePassword(nickname: string, password: string): Promise<boolean>;
+    login(user: UserDto): Promise<Users>;
+    update(user: UserDto): Promise<Users>;
 }
