@@ -4,5 +4,4 @@ front-end/node_modules
 front-end/dist
 dbStructure.sql
 node_modules
-aux-typing.git
 backend/db/db.sqlite
