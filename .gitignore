@@ -2,8 +2,7 @@ backend/node_modules
 backend/dist
 front-end/node_modules
 front-end/dist
-dbStructure
+dbStructure.sql
 node_modules
 aux-typing.git
-backend/src/users/newController.ts
 backend/db/db.sqlite
