@@ -5,3 +5,5 @@ front-end/dist
 dbStructure
 node_modules
 aux-typing.git
+backend/src/users/newController.ts
+backend/db/db.sqlite
