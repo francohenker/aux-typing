@@ -18,6 +18,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const users_entity_1 = require("./entities/users.entity");
 const typeorm_2 = require("typeorm");
 const phrase_to_users_entity_1 = require("../phrase-to-user/entities/phrase-to-users.entity");
+const user_response_dto_1 = require("./dto/user-response.dto");
 let UsersService = class UsersService {
     constructor(usersRepository, PhraseToUsersRepository) {
         this.usersRepository = usersRepository;
@@ -32,9 +33,11 @@ let UsersService = class UsersService {
         });
     }
     async getUserById(id) {
-        return await this.usersRepository.findOneBy({
-            id: id,
-        });
+        const user = await this.usersRepository.findOneBy({ id });
+        if (!user) {
+            throw new Error('User not found');
+        }
+        return new user_response_dto_1.UserResponseDto(user.id, user.nickname);
     }
     async create(user) {
         const userSearch = await this.usersRepository.findOneBy({

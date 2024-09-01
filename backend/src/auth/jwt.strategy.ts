@@ -4,6 +4,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import { JWTPayload } from './jwt.payload';
+import { UserResponseDto } from 'src/users/dto/user-response.dto';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -15,7 +16,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     });
   }
 
-  async validate(payload: JWTPayload): Promise<CreateUserDto> {
+  async validate(payload: JWTPayload): Promise<UserResponseDto> {
     const user = await this.usersService.getUserById(payload.userId);
     if (!user) {
       throw new UnauthorizedException();

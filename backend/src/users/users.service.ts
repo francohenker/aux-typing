@@ -6,6 +6,7 @@ import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Injectable()
 export class UsersService {
@@ -22,16 +23,20 @@ export class UsersService {
         return await this.usersRepository.find();
     }
 
+    //USE ONLY IN INTERNAL FUNCTIONS
     async getUserByName(name: string): Promise<Users> {
         return await this.usersRepository.findOneBy({
             nickname: name,
         });
     }
 
-    async getUserById(id: number): Promise<Users> {
-        return await this.usersRepository.findOneBy({
-            id: id,
-        });
+    // return UserResponseDto objet
+    async getUserById(id: number): Promise<UserResponseDto> {
+        const user = await this.usersRepository.findOneBy({id});
+        if(!user){  
+            throw new Error('User not found');
+        }
+        return new UserResponseDto(user.id, user.nickname);
     }
 
     async create(user: CreateUserDto): Promise<Users> { 
