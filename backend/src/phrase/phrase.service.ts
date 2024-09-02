@@ -36,4 +36,7 @@ export class PhraseService {
         return await this.phraseRepository.save(phraseNew);
     }
 
+    async getAllPhrases(): Promise<Phrase[]> {
+        return await this.phraseRepository.find();
+    }
 }

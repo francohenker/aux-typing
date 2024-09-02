@@ -7,8 +7,8 @@ function LeaderBoard({ users }) {
       <ul className="space-y-4">
         {users.map((user, index) => (
           <li key={index} className="flex justify-between items-center bg-orange-100 p-4 rounded-lg shadow-sm border border-black">
-            <span className="text-xl font-semibold">{user.name}</span>
-            <span className="text-xl font-semibold">{user.score}</span>
+            <span className="text-xl font-semibold">{user.nickname}</span>
+            <span className="text-xl font-semibold">{user.max_wpm}</span>
           </li>
         ))}
       </ul>
@@ -17,3 +17,5 @@ function LeaderBoard({ users }) {
 }
 
 export default LeaderBoard;
+
+
