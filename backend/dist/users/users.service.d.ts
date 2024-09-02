@@ -13,6 +13,6 @@ export declare class UsersService {
     getUserById(id: number): Promise<UserResponseDto>;
     create(user: CreateUserDto): Promise<Users>;
     getMaxWpm(): Promise<any>;
-    login(user: UserDto): Promise<Users>;
+    login(user: UserDto): Promise<UserResponseDto>;
     update(user: UserDto): Promise<Users>;
 }

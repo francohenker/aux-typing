@@ -1,11 +1,10 @@
-import { Body, HttpCode, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
 import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
-import * as bcrypt from 'bcrypt';
 import { UserResponseDto } from './dto/user-response.dto';
 
 @Injectable()
@@ -69,7 +68,7 @@ export class UsersService {
       .getRawMany();
     }
 
-    async login(user: UserDto): Promise<Users> {
+    async login(user: UserDto): Promise<UserResponseDto> {
         const userNew = await this.usersRepository.findOneBy({
             nickname: user.nickname,
         });

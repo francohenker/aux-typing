@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
+import { UserResponseDto } from './dto/user-response.dto';
 
 @Controller('users')
 export class UsersController {
@@ -35,7 +36,7 @@ export class UsersController {
     //login user
     @Post('/login')
     @UsePipes(new ValidationPipe({transform: true}))
-    async login(@Body() user: UserDto): Promise<Users> {
+    async login(@Body() user: UserDto): Promise<UserResponseDto> {
         try{
             return await this.usersService.login(user);
         }catch(error){

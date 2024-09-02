@@ -4,9 +4,11 @@ import { PhraseController } from '../phrase/phrase.controller';
 import { PhraseToUserService } from './phrase-to-user.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PhraseToUsers } from './entities/phrase-to-users.entity';
+import { Phrase } from 'src/phrase/entities/phrase.entity';
+import { Users } from 'src/users/entities/users.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PhraseToUsers])],
+  imports: [TypeOrmModule.forFeature([PhraseToUsers, Users, Phrase])],
   controllers: [PhraseToUserController],
   providers: [PhraseToUserService],
   exports: [PhraseToUserService],

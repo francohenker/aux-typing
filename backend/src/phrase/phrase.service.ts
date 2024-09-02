@@ -14,6 +14,14 @@ export class PhraseService {
         private usersService: UsersService,
     ) {}
 
+    async getAllPhrases(): Promise<Phrase[]> {
+        return await this.phraseRepository.find();
+    }
+    
+    async getPhraseById(id: number): Promise<Phrase> {
+        return await this.phraseRepository.findOneBy({ id });
+    }
+
     // CREATE A NEW PHRASE AND RETURN IT
     async createPhrase(createPhraseDto: CreatePhraseDto): Promise<Phrase> {
         // const { phrase, createdBy } = createPhraseDto;
@@ -36,7 +44,11 @@ export class PhraseService {
         return await this.phraseRepository.save(phraseNew);
     }
 
-    async getAllPhrases(): Promise<Phrase[]> {
-        return await this.phraseRepository.find();
+    async deletePhrase(id: number): Promise<void> {
+        const phrase = await this.phraseRepository.findOneBy({ id });
+        if (!phrase) {
+            throw new Error('Phrase not found');
+        }
+        await this.phraseRepository.delete(phrase);
     }
 }
