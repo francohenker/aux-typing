@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import './TypingTestPage.css';
+import React, { useState, useEffect, useRef } from 'react';
+import '../styles/TypingTestPage.css';
 
 function TypingTestPage() {
   const [words, setWords] = useState([]);
   const [typedWords, setTypedWords] = useState('');
   const [startTime, setStartTime] = useState(null);
   const [wpm, setWpm] = useState(0);
+  const textareaRef = useRef(null);
 
   useEffect(() => {
     const randomWords = generateRandomWords(50);
     setWords(randomWords);
+  }, []);
+
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
   }, []);
 
   const generateRandomWords = (numWords) => {
@@ -37,7 +44,18 @@ function TypingTestPage() {
   };
 
   const handleKeyPress = (e) => {
-    const key = e.key.toLowerCase();
+    let key = e.key.toLowerCase();
+
+    //tuve que poner esto para que no aparezca en el layout del teclado, simplemente normaliza las tildes
+    const normalizedKeyMap = {
+      'á': 'a',
+      'é': 'e',
+      'í': 'i',
+      'ó': 'o',
+      'ú': 'u'
+    };
+    key = normalizedKeyMap[key] || key;
+
     const keyElement = document.getElementById(key);
     if (keyElement) {
       keyElement.classList.add('highlight');
@@ -46,9 +64,9 @@ function TypingTestPage() {
   };
 
   useEffect(() => {
-    window.addEventListener('keypress', handleKeyPress);
+    window.addEventListener('keydown', handleKeyPress);
     return () => {
-      window.removeEventListener('keypress', handleKeyPress);
+      window.removeEventListener('keydown', handleKeyPress);
     };
   }, []);
 
@@ -59,6 +77,7 @@ function TypingTestPage() {
         {words.join(' ')}
       </div>
       <textarea
+        ref={textareaRef}
         className="typing-input"
         placeholder="Escribe aquí..."
         value={typedWords}
@@ -68,7 +87,7 @@ function TypingTestPage() {
         {wpm > 0 && <p>Palabras por minuto: {wpm}</p>}
       </div>
       <div className="keyboard-container">
-        {'abcdefghijklmnopqrstuvwxyz'.split('').map((letter) => (
+        {'qwertyuiopasdfghjklñzxcvbnm'.split('').map((letter) => (
           <div key={letter} id={letter} className="key">
             {letter}
           </div>

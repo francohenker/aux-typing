@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
-import './index.css'; 
+import '../styles/index.css'; 
 import LeaderBoardPage from './LeaderBoardPage';
 import TypingTestPage from './TypingTestPage';  // Importa la página de prueba de mecanografía
 
