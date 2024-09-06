@@ -22,6 +22,12 @@ export class UsersService {
         return await this.usersRepository.find();
     }
 
+    async findOne(nickname: string): Promise<Users> {
+        return await this.usersRepository.findOneBy({
+            nickname: nickname,
+        });
+    }
+
     //USE ONLY IN INTERNAL FUNCTIONS
     async getUserByName(name: string): Promise<Users> {
         return await this.usersRepository.findOneBy({

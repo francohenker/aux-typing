@@ -8,11 +8,8 @@ export class LoginUserDto {
 
     @IsNotEmpty()
     @IsString()
-    @Min(8, {
-        message: 'Password must be at least 8 characters',
-    })
-    @Max(40, {
-        message: 'Password must be at most 40 characters',
-    })
+    // @Min(8, {
+    //     message: 'Password must be at least 8 characters',
+    // })
     password: string;
 }

@@ -27,6 +27,11 @@ let UsersService = class UsersService {
     async findAll() {
         return await this.usersRepository.find();
     }
+    async findOne(nickname) {
+        return await this.usersRepository.findOneBy({
+            nickname: nickname,
+        });
+    }
     async getUserByName(name) {
         return await this.usersRepository.findOneBy({
             nickname: name,

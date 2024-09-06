@@ -9,6 +9,7 @@ export declare class UsersService {
     private PhraseToUsersRepository;
     constructor(usersRepository: Repository<Users>, PhraseToUsersRepository: Repository<PhraseToUsers>);
     findAll(): Promise<Users[]>;
+    findOne(nickname: string): Promise<Users>;
     getUserByName(name: string): Promise<Users>;
     getUserById(id: number): Promise<UserResponseDto>;
     create(user: CreateUserDto): Promise<Users>;

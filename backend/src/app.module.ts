@@ -30,7 +30,7 @@ import { AuthController } from './auth/auth.controller';
     UsersModule,
     PhraseModule,
     PhraseToUserModule,
-       
+    AuthModule,   
   ],
   controllers: [AppController, UsersController, PhraseController, PhraseToUserController],
   providers: [AppService, UsersService, PhraseService, PhraseToUserService],

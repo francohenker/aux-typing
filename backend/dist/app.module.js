@@ -23,6 +23,7 @@ const phrase_to_users_entity_1 = require("./phrase-to-user/entities/phrase-to-us
 const phrase_to_user_module_1 = require("./phrase-to-user/phrase-to-user.module");
 const phrase_to_user_controller_1 = require("./phrase-to-user/phrase-to-user.controller");
 const phrase_to_user_service_1 = require("./phrase-to-user/phrase-to-user.service");
+const auth_module_1 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -39,6 +40,7 @@ exports.AppModule = AppModule = __decorate([
             users_module_1.UsersModule,
             phrase_module_1.PhraseModule,
             phrase_to_user_module_1.PhraseToUserModule,
+            auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController, users_controller_1.UsersController, phrase_controller_1.PhraseController, phrase_to_user_controller_1.PhraseToUserController],
         providers: [app_service_1.AppService, users_service_1.UsersService, phrase_service_1.PhraseService, phrase_to_user_service_1.PhraseToUserService],
