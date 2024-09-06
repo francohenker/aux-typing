@@ -1,9 +1,10 @@
-import { Body, Controller, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('users')
 export class UsersController {
@@ -11,6 +12,7 @@ export class UsersController {
     constructor(private readonly usersService: UsersService) {}
 
     //not used yet
+    @UseGuards(JwtAuthGuard)
     @Get()
     async findAll(): Promise<Users[]> {
         return await this.usersService.findAll();
