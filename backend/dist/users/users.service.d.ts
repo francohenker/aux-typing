@@ -4,16 +4,20 @@ import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { AuthService } from '../auth/auth.service';
 export declare class UsersService {
     private usersRepository;
     private PhraseToUsersRepository;
-    constructor(usersRepository: Repository<Users>, PhraseToUsersRepository: Repository<PhraseToUsers>);
+    private AuthService;
+    constructor(usersRepository: Repository<Users>, PhraseToUsersRepository: Repository<PhraseToUsers>, AuthService: AuthService);
     findAll(): Promise<Users[]>;
     findOne(nickname: string): Promise<Users>;
     getUserByName(name: string): Promise<Users>;
     getUserById(id: number): Promise<UserResponseDto>;
     create(user: CreateUserDto): Promise<Users>;
     getMaxWpm(): Promise<any>;
-    login(user: UserDto): Promise<UserResponseDto>;
+    login(user: UserDto): Promise<{
+        access_token: string;
+    }>;
     update(user: UserDto): Promise<Users>;
 }

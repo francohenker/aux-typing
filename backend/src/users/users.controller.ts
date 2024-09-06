@@ -38,7 +38,7 @@ export class UsersController {
     //login user
     @Post('/login')
     @UsePipes(new ValidationPipe({transform: true}))
-    async login(@Body() user: UserDto): Promise<UserResponseDto> {
+    async login(@Body() user: UserDto): Promise<{ access_token: string }> {
         try{
             return await this.usersService.login(user);
         }catch(error){

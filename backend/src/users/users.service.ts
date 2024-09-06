@@ -6,6 +6,7 @@ import { PhraseToUsers } from '../phrase-to-user/entities/phrase-to-users.entity
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UsersService {
@@ -15,6 +16,8 @@ export class UsersService {
         private usersRepository: Repository<Users>,
         @InjectRepository(PhraseToUsers)
         private PhraseToUsersRepository: Repository<PhraseToUsers>,
+        private AuthService: AuthService,
+        
     ) {}
     
 
@@ -74,7 +77,7 @@ export class UsersService {
       .getRawMany();
     }
 
-    async login(user: UserDto): Promise<UserResponseDto> {
+    async login(user: UserDto): Promise<{ access_token: string }> {
         const userNew = await this.usersRepository.findOneBy({
             nickname: user.nickname,
         });
@@ -83,7 +86,7 @@ export class UsersService {
         }
 
         if(user.password === userNew.password){
-            return userNew;
+            return this.AuthService.generateAccessToken(user.nickname);
         }
         throw new Error('User or password incorrect');
     }

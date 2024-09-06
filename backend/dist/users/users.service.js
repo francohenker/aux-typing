@@ -19,10 +19,12 @@ const users_entity_1 = require("./entities/users.entity");
 const typeorm_2 = require("typeorm");
 const phrase_to_users_entity_1 = require("../phrase-to-user/entities/phrase-to-users.entity");
 const user_response_dto_1 = require("./dto/user-response.dto");
+const auth_service_1 = require("../auth/auth.service");
 let UsersService = class UsersService {
-    constructor(usersRepository, PhraseToUsersRepository) {
+    constructor(usersRepository, PhraseToUsersRepository, AuthService) {
         this.usersRepository = usersRepository;
         this.PhraseToUsersRepository = PhraseToUsersRepository;
+        this.AuthService = AuthService;
     }
     async findAll() {
         return await this.usersRepository.find();
@@ -76,7 +78,7 @@ let UsersService = class UsersService {
             throw new Error('User not found');
         }
         if (user.password === userNew.password) {
-            return userNew;
+            return this.AuthService.generateAccessToken(user.nickname);
         }
         throw new Error('User or password incorrect');
     }
@@ -99,6 +101,7 @@ exports.UsersService = UsersService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(users_entity_1.Users)),
     __param(1, (0, typeorm_1.InjectRepository)(phrase_to_users_entity_1.PhraseToUsers)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository])
+        typeorm_2.Repository,
+        auth_service_1.AuthService])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

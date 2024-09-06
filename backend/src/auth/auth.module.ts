@@ -8,6 +8,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from 'src/users/entities/users.entity';
+import { UsersService } from 'src/users/users.service';
 
 @Module({
   imports: [

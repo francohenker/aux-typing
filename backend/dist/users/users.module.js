@@ -13,13 +13,15 @@ const users_service_1 = require("./users.service");
 const typeorm_1 = require("@nestjs/typeorm");
 const users_entity_1 = require("./entities/users.entity");
 const phrase_to_users_entity_1 = require("../phrase-to-user/entities/phrase-to-users.entity");
+const auth_service_1 = require("../auth/auth.service");
+const jwt_1 = require("@nestjs/jwt");
 let UsersModule = class UsersModule {
 };
 exports.UsersModule = UsersModule;
 exports.UsersModule = UsersModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([users_entity_1.Users, phrase_to_users_entity_1.PhraseToUsers])],
-        providers: [users_service_1.UsersService],
+        providers: [users_service_1.UsersService, auth_service_1.AuthService, jwt_1.JwtService],
         controllers: [users_controller_1.UsersController],
         exports: [users_service_1.UsersService],
     })
