@@ -6,12 +6,13 @@ import { LoginUserDto } from './dto/login-user.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  // DON'T WORK
   // @HttpCode(HttpStatus.OK)
-  @Post('/login')
-  @UsePipes(new ValidationPipe({transform: true}))
-  signIn(@Body() user: LoginUserDto) {
-    return this.authService.signIn(user);
-  }
+  // @Post('/login')
+  // @UsePipes(new ValidationPipe({transform: true}))
+  // signIn(@Body() user: LoginUserDto) {
+  //   return this.authService.signIn(user);
+  // }
 
 
   // USE ONLY IN DEV ENVIRONMENT

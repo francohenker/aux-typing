@@ -24,6 +24,7 @@ const phrase_to_user_module_1 = require("./phrase-to-user/phrase-to-user.module"
 const phrase_to_user_controller_1 = require("./phrase-to-user/phrase-to-user.controller");
 const phrase_to_user_service_1 = require("./phrase-to-user/phrase-to-user.service");
 const auth_module_1 = require("./auth/auth.module");
+const jwt_1 = require("@nestjs/jwt");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -43,7 +44,7 @@ exports.AppModule = AppModule = __decorate([
             auth_module_1.AuthModule,
         ],
         controllers: [app_controller_1.AppController, users_controller_1.UsersController, phrase_controller_1.PhraseController, phrase_to_user_controller_1.PhraseToUserController],
-        providers: [app_service_1.AppService, users_service_1.UsersService, phrase_service_1.PhraseService, phrase_to_user_service_1.PhraseToUserService],
+        providers: [app_service_1.AppService, users_service_1.UsersService, phrase_service_1.PhraseService, phrase_to_user_service_1.PhraseToUserService, jwt_1.JwtService],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

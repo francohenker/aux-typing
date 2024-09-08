@@ -7,9 +7,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { AuthService } from '../auth/auth.service';
+import * as bcrypt from 'bcrypt';
+import { plainToInstance } from 'class-transformer';
+import { JwtService } from '@nestjs/jwt';
+
 
 @Injectable()
 export class UsersService {
+    [x: string]: any;
      
     constructor(
         @InjectRepository(Users)
@@ -17,12 +22,13 @@ export class UsersService {
         @InjectRepository(PhraseToUsers)
         private PhraseToUsersRepository: Repository<PhraseToUsers>,
         private AuthService: AuthService,
+        private jwtService: JwtService,
         
     ) {}
     
 
     async findAll(): Promise<Users[]> {
-        return await this.usersRepository.find();
+        return plainToInstance(Users, await this.usersRepository.find());
     }
 
     async findOne(nickname: string): Promise<Users> {
@@ -85,7 +91,7 @@ export class UsersService {
             throw new Error('User not found');
         }
 
-        if(user.password === userNew.password){
+        if(bcrypt.compareSync(user.password, userNew.password)){
             return this.AuthService.generateAccessToken(user.nickname);
         }
         throw new Error('User or password incorrect');
@@ -100,7 +106,7 @@ export class UsersService {
     // }
 
     //modify later
-    async update(user: UserDto): Promise<Users> {
+    async update(user: UserDto, token: any): Promise<Users> {
         const userNew = await this.usersRepository.findOneBy({
             nickname: user.nickname,
         });
@@ -108,9 +114,33 @@ export class UsersService {
             throw new Error('User not found');
         }
 
-        if(user.password === userNew.password){
+        if(bcrypt.compareSync(user.password, userNew.password)){
             return userNew;
         }
-        throw new Error('User or password incorrect');
+        
+        const decoded = this.jwtService.decode(token);
+        const salt = await bcrypt.genSalt();
+        const pass = await bcrypt.hash(user.password, salt);
+
+        // Verificar si el campo admin es verdadero
+        if(decoded.name === user.nickname){
+            this.usersRepository.update(userNew.id, {password: pass});
+        }
+        
+        return await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+
     }
+    
+      extractTokenFromHeader(request): string {
+        const authHeader = request.headers['authorization'];
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+          return authHeader.split(' ')[1]; // Extraer solo el token
+        }
+        return null;
+      }
+
 }
+
+

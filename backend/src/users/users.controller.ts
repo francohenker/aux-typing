@@ -1,19 +1,22 @@
-import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, ExecutionContext, Get, Post, Req, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Users } from './entities/users.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
-import { UserResponseDto } from './dto/user-response.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AdminGuard, JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { AuthService } from 'src/auth/auth.service';
 
 @Controller('users')
 export class UsersController {
 
-    constructor(private readonly usersService: UsersService) {}
+    constructor(
+        private readonly usersService: UsersService,
+        
+    ) {}
 
     //not used yet
-    @UseGuards(JwtAuthGuard)
     @Get()
+    @UseGuards(AdminGuard)
     async findAll(): Promise<Users[]> {
         return await this.usersService.findAll();
     }
@@ -48,11 +51,13 @@ export class UsersController {
 
 
     //CHECK
+    @UseGuards(JwtAuthGuard)
     @Post("/update")
     @UsePipes(new ValidationPipe({transform: true}))
-    async update(@Body() user: UserDto): Promise<Users> {
+    async update(@Body() user: UserDto, @Req() request): Promise<Users> {
         try{
-            return await this.usersService.update(user);
+            const token = this.usersService.extractTokenFromHeader(request);
+            return await this.usersService.update(user, token);
         }catch(error){
             console.log(error);
         }

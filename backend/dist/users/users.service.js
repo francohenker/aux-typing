@@ -20,14 +20,18 @@ const typeorm_2 = require("typeorm");
 const phrase_to_users_entity_1 = require("../phrase-to-user/entities/phrase-to-users.entity");
 const user_response_dto_1 = require("./dto/user-response.dto");
 const auth_service_1 = require("../auth/auth.service");
+const bcrypt = require("bcrypt");
+const class_transformer_1 = require("class-transformer");
+const jwt_1 = require("@nestjs/jwt");
 let UsersService = class UsersService {
-    constructor(usersRepository, PhraseToUsersRepository, AuthService) {
+    constructor(usersRepository, PhraseToUsersRepository, AuthService, jwtService) {
         this.usersRepository = usersRepository;
         this.PhraseToUsersRepository = PhraseToUsersRepository;
         this.AuthService = AuthService;
+        this.jwtService = jwtService;
     }
     async findAll() {
-        return await this.usersRepository.find();
+        return (0, class_transformer_1.plainToInstance)(users_entity_1.Users, await this.usersRepository.find());
     }
     async findOne(nickname) {
         return await this.usersRepository.findOneBy({
@@ -77,22 +81,37 @@ let UsersService = class UsersService {
         if (!userNew) {
             throw new Error('User not found');
         }
-        if (user.password === userNew.password) {
+        if (bcrypt.compareSync(user.password, userNew.password)) {
             return this.AuthService.generateAccessToken(user.nickname);
         }
         throw new Error('User or password incorrect');
     }
-    async update(user) {
+    async update(user, token) {
         const userNew = await this.usersRepository.findOneBy({
             nickname: user.nickname,
         });
         if (!userNew) {
             throw new Error('User not found');
         }
-        if (user.password === userNew.password) {
+        if (bcrypt.compareSync(user.password, userNew.password)) {
             return userNew;
         }
-        throw new Error('User or password incorrect');
+        const decoded = this.jwtService.decode(token);
+        const salt = await bcrypt.genSalt();
+        const pass = await bcrypt.hash(user.password, salt);
+        if (decoded.name === user.nickname) {
+            this.usersRepository.update(userNew.id, { password: pass });
+        }
+        return await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+    }
+    extractTokenFromHeader(request) {
+        const authHeader = request.headers['authorization'];
+        if (authHeader && authHeader.startsWith('Bearer ')) {
+            return authHeader.split(' ')[1];
+        }
+        return null;
     }
 };
 exports.UsersService = UsersService;
@@ -102,6 +121,7 @@ exports.UsersService = UsersService = __decorate([
     __param(1, (0, typeorm_1.InjectRepository)(phrase_to_users_entity_1.PhraseToUsers)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
-        auth_service_1.AuthService])
+        auth_service_1.AuthService,
+        jwt_1.JwtService])
 ], UsersService);
 //# sourceMappingURL=users.service.js.map

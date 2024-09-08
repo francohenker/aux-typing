@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Users = void 0;
 const typeorm_1 = require("typeorm");
 const bcrypt = require("bcrypt");
+const class_transformer_1 = require("class-transformer");
 let Users = class Users {
     async validatePassword(password) {
         return await bcrypt.compareSync(password, this.password);
@@ -36,6 +37,7 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "nickname", void 0);
 __decorate([
+    (0, class_transformer_1.Exclude)(),
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);

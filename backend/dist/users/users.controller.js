@@ -44,9 +44,10 @@ let UsersController = class UsersController {
             console.log(error);
         }
     }
-    async update(user) {
+    async update(user, request) {
         try {
-            return await this.usersService.update(user);
+            const token = this.usersService.extractTokenFromHeader(request);
+            return await this.usersService.update(user, token);
         }
         catch (error) {
             console.log(error);
@@ -55,8 +56,8 @@ let UsersController = class UsersController {
 };
 exports.UsersController = UsersController;
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)(),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.AdminGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
@@ -84,11 +85,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "login", null);
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)("/update"),
     (0, common_1.UsePipes)(new common_1.ValidationPipe({ transform: true })),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [login_update_user_dto_1.UserDto]),
+    __metadata("design:paramtypes", [login_update_user_dto_1.UserDto, Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "update", null);
 exports.UsersController = UsersController = __decorate([

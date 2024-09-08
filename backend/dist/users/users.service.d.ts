@@ -5,11 +5,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UserDto } from './dto/login-update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { AuthService } from '../auth/auth.service';
+import { JwtService } from '@nestjs/jwt';
 export declare class UsersService {
     private usersRepository;
     private PhraseToUsersRepository;
     private AuthService;
-    constructor(usersRepository: Repository<Users>, PhraseToUsersRepository: Repository<PhraseToUsers>, AuthService: AuthService);
+    private jwtService;
+    [x: string]: any;
+    constructor(usersRepository: Repository<Users>, PhraseToUsersRepository: Repository<PhraseToUsers>, AuthService: AuthService, jwtService: JwtService);
     findAll(): Promise<Users[]>;
     findOne(nickname: string): Promise<Users>;
     getUserByName(name: string): Promise<Users>;
@@ -19,5 +22,6 @@ export declare class UsersService {
     login(user: UserDto): Promise<{
         access_token: string;
     }>;
-    update(user: UserDto): Promise<Users>;
+    update(user: UserDto, token: any): Promise<Users>;
+    extractTokenFromHeader(request: any): string;
 }

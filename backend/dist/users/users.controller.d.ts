@@ -11,5 +11,5 @@ export declare class UsersController {
     login(user: UserDto): Promise<{
         access_token: string;
     }>;
-    update(user: UserDto): Promise<Users>;
+    update(user: UserDto, request: any): Promise<Users>;
 }

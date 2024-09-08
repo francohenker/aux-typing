@@ -5,4 +5,5 @@ export class UserDto {
     nickname: string;
     @IsNotEmpty()
     password: string;
+    
 }

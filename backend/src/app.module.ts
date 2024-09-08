@@ -17,6 +17,7 @@ import { PhraseToUserService } from './phrase-to-user/phrase-to-user.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -33,6 +34,6 @@ import { AuthController } from './auth/auth.controller';
     AuthModule,   
   ],
   controllers: [AppController, UsersController, PhraseController, PhraseToUserController],
-  providers: [AppService, UsersService, PhraseService, PhraseToUserService],
+  providers: [AppService, UsersService, PhraseService, PhraseToUserService, JwtService],
 })
 export class AppModule {}
