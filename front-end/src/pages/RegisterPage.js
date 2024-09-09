@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 const RegisterPage = () => {
   const [nickname, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  //VER DONDE SE PUEDE MODIFICAR EL HECHO DE QUE UN USUARIO PUEDA CONVERTIRSE EN ADMINISTRADOR DEL SISTEMA
   const [admin, setAdmin] = useState(false);
 
   const handleRegister = async () => {
