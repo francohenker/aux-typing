@@ -3,6 +3,8 @@ import { Route, Routes, Link } from 'react-router-dom';
 import '../styles/index.css'; 
 import LeaderBoardPage from './LeaderBoardPage';
 import TypingTestPage from './TypingTestPage';  // Importa la página de prueba de mecanografía
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 
 function App() {
   const handleChallengeClick = (challengeNumber) => {
@@ -32,12 +34,12 @@ function App() {
 
             {/* Sección de inicio de sesión / registro */}
             <div className="bg-white p-6 rounded-lg shadow-md border border-black">
-              <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciaasdasdr sesasdasdión / Registrarse</h2>
+              <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciar sesión / Registrarse</h2>
               <div className="flex flex-col space-y-4">
-                <button className="bg-orange-500 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600 focus:outline-none">
+                <button className="bg-orange-500 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600 focus:outline-none" onClick={() => window.location.href = '/LoginPage'}>
                   Iniciar sesión
                 </button>
-                <button className="bg-orange-200 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-300 focus:outline-none">
+                <button className="bg-orange-200 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-300 focus:outline-none" onClick={() => window.location.href = '/RegisterPage'}>
                   Registrarse
                 </button>
               </div>
@@ -59,6 +61,8 @@ function App() {
           </div>
         </div>
       } />
+      <Route path="/LoginPage" element={<LoginPage />} />
+      <Route path="/RegisterPage" element={<RegisterPage />} /> 
       <Route path="/leaderboards" element={<LeaderBoardPage />} />
       <Route path="/typing-test" element={<TypingTestPage />} />  {/* Ruta para la página de prueba de mecanografía */}
     </Routes>

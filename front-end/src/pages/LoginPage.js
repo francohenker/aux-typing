@@ -43,30 +43,32 @@
 // LoginPage.js
 import React, { useState } from 'react';
 
+
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
+  const [nickname, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    const response = await fetch('http://localhost:3000/auth/login', {
+    const response = await fetch('http://localhost:4000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ nickname, password }),
     });
-
     const data = await response.json();
     if (data.access_token) {
       localStorage.setItem('token', data.access_token);
+      window.location.href = '/'
     } else {
+      alert('Login failed');
       console.error('Login failed');
     }
   };
 
   return (
     <div>
-      <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+      <input value={nickname} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
       <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" type="password" />
       <button onClick={handleLogin}>Login</button>
     </div>
