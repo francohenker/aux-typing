@@ -9,7 +9,7 @@ function LeaderBoardPage() {
     
     fetch('http://localhost:4000/users/max-wpm',{
       method: "GET",
-      
+      Authorization: "Bearer " + localStorage.getItem('token'),
     })
     .then(response => response.json())
     .then(data => {
