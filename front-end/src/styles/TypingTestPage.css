@@ -17,6 +17,19 @@
     border: 1px solid #FF8C00;
     border-radius: 8px;
   }
+
+  .correct-word {
+    color: green;
+  }
+  
+  .partial-word {
+    color: orange; /* Puedes cambiar esto si prefieres otro color para palabras parcialmente correctas */
+  }
+  
+  .incorrect-word {
+    color: red;
+  }
+  
   
   .typing-input {
     width: 100%;
