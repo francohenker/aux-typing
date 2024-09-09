@@ -45,8 +45,8 @@ function TypingTestPage() {
 
   const handleKeyPress = (e) => {
     let key = e.key.toLowerCase();
-
-    //tuve que poner esto para que no aparezca en el layout del teclado, simplemente normaliza las tildes
+  
+    // Normaliza las tildes
     const normalizedKeyMap = {
       'á': 'a',
       'é': 'e',
@@ -55,11 +55,11 @@ function TypingTestPage() {
       'ú': 'u'
     };
     key = normalizedKeyMap[key] || key;
-
+  
     const keyElement = document.getElementById(key);
     if (keyElement) {
       keyElement.classList.add('highlight');
-      setTimeout(() => keyElement.classList.remove('highlight'), 200);
+      setTimeout(() => keyElement.classList.remove('highlight'), 100); // Menos delay
     }
   };
 
@@ -86,13 +86,36 @@ function TypingTestPage() {
       <div className="wpm-display">
         {wpm > 0 && <p>Palabras por minuto: {wpm}</p>}
       </div>
-      <div className="keyboard-container">
+      {/* <div className="keyboard-container">
         {'qwertyuiopasdfghjklñzxcvbnm'.split('').map((letter) => (
           <div key={letter} id={letter} className="key">
             {letter}
           </div>
         ))}
+      </div> */}
+      <div className="keyboard-container">
+  <div className="keyboard-row">
+    {'qwertyuiop'.split('').map((letter) => (
+      <div key={letter} id={letter} className="key">
+        {letter}
       </div>
+    ))}
+  </div>
+  <div className="keyboard-row">
+    {'asdfghjklñ'.split('').map((letter) => (
+      <div key={letter} id={letter} className="key">
+        {letter}
+      </div>
+    ))}
+  </div>
+  <div className="keyboard-row">
+    {'zxcvbnm'.split('').map((letter) => (
+      <div key={letter} id={letter} className="key">
+        {letter}
+      </div>
+    ))}
+  </div>
+</div>
     </div>
   );
 }

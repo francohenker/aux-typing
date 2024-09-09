@@ -34,7 +34,7 @@
     color: #FF8C00;
   }
   
-  .keyboard-container {
+  /* .keyboard-container {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 5px;
@@ -57,4 +57,48 @@
     background-color: #FF8C00;
     color: white;
   }
-  
+   */
+
+   .keyboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #fafafa;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  color: #333;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.key.highlight {
+  background-color: #ff8c00;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: none; /* Elimina cualquier transición que pueda ralentizar el highlight */
+}
+
+.key:hover {
+  background-color: #ff8c00;
+  color: white;
+  cursor: pointer;
+}
