@@ -5,3 +5,4 @@ front-end/dist
 dbStructure.sql
 node_modules
 # backend/db/db.sqlite
+backend/.env
