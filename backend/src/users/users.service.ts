@@ -91,6 +91,10 @@ export class UsersService {
             throw new Error('User not found');
         }
 
+        if(bcrypt.compareSync("GOOGLE_ENTRY", userNew.password)){
+            throw new Error('Maybe user is register with google');
+        }
+        
         if(bcrypt.compareSync(user.password, userNew.password)){
             return this.AuthService.generateAccessToken(user.nickname);
         }
