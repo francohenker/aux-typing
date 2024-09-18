@@ -81,6 +81,7 @@ export class UsersService {
       .innerJoin('utp.user', 'u')  // Unir con la tabla de usuarios
       .groupBy('u.nickname')  // Agrupar solo por nickname
       .getRawMany();
+    
     }
 
     async login(user: UserDto): Promise<{ access_token: string }> {

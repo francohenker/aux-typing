@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // Cambia aquí
+import { useNavigate } from 'react-router-dom';
 
 const AuthCallback = () => {
-  const navigate = useNavigate(); // Usa useNavigate en lugar de useHistory
+  const navigate = useNavigate();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -10,17 +10,16 @@ const AuthCallback = () => {
     const googleRefreshToken = params.get('googleRefreshToken');
 
     if (authToken) {
-      // Almacena los tokens en localStorage
+      // almacena los tokens en localStorage
       localStorage.setItem('authToken', authToken);
       localStorage.setItem('googleRefreshToken', googleRefreshToken);
-      navigate('/'); // Redirige a la página principal
+      navigate('/LoginPage'); // redirige a la página principal
     } else {
-      // Manejar error o redirigir a una página diferente
-      navigate('/'); // Redirigir a la página de inicio de sesión si no hay token
+      navigate('/'); // redirige a la página de inicio de sesión si no hay token
     }
   }, [navigate]);
 
-  return <div>Loading...</div>; // Puedes mostrar un loader mientras se procesa
+  return <div>Cargando...</div>; 
 };
 
 export default AuthCallback;

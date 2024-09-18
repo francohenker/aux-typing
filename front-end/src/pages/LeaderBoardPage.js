@@ -18,7 +18,6 @@ function LeaderBoardPage() {
     })
     .catch(error => {console.error('Error al obtener los usuarios de la tabla:', error);});
   }, []);
-
   return (
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="w-full max-w-4xl p-6">

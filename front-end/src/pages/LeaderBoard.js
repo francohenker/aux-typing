@@ -17,5 +17,3 @@ function LeaderBoard({ users }) {
 }
 
 export default LeaderBoard;
-
-
