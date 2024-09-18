@@ -74,13 +74,14 @@ export class UsersService {
 
     //using in leaderboard
     async getMaxWpm(): Promise<any> {
-        return await this.PhraseToUsersRepository
-      .createQueryBuilder('utp')
-      .select('u.nickname', 'nickname')  // Seleccionar solo el nickname
-      .addSelect('MAX(utp.wpm)', 'max_wpm')  // Seleccionar el máximo WPM
-      .innerJoin('utp.user', 'u')  // Unir con la tabla de usuarios
-      .groupBy('u.nickname')  // Agrupar solo por nickname
-      .getRawMany();
+    //     return await this.PhraseToUsersRepository
+    //   .createQueryBuilder('utp')
+    //   .select('u.nickname', 'nickname')  // Seleccionar solo el nickname
+    //   .addSelect('MAX(utp.wpm)', 'max_wpm')  // Seleccionar el máximo WPM
+    //   .innerJoin('utp.user', 'u')  // Unir con la tabla de usuarios
+    //   .groupBy('u.nickname')  // Agrupar solo por nickname
+    //   .getRawMany();
+    return await this.PhraseToUsersRepository.find();
     }
 
     async login(user: UserDto): Promise<{ access_token: string }> {

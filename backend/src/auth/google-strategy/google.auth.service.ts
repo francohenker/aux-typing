@@ -123,4 +123,12 @@ export class GoogleAuthService {
     );
     return token;
   }
+
+  private async getUser(token: string){
+    
+  }
+  
+
+
+
 }

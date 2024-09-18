@@ -7,10 +7,7 @@ function LeaderBoardPage() {
 
   useEffect(() => {
     
-    fetch('http://localhost:4000/users/max-wpm',{
-      method: "GET",
-      Authorization: "Bearer " + localStorage.getItem('token'),
-    })
+    fetch('http://localhost:4000/users/max-wpm',{})
     .then(response => response.json())
     .then(data => {
       setUsers(data);
