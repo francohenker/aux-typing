@@ -77,6 +77,9 @@ import { Request, Response } from 'express';
 import { ConfigService } from '@nestjs/config';
 import { AuthProviders } from '../../enums/authProviders';
 import { GoogleAuthService } from './google.auth.service';
+import { UsersService } from 'src/users/users.service';
+import { UserDto } from 'src/users/dto/login-update-user.dto';
+import { AuthService } from '../auth.service';
 
 @Controller({
   path: 'auth/google',
@@ -85,6 +88,7 @@ export class GoogleAuthController {
   constructor(
     private readonly googleAuthService: GoogleAuthService,
     private readonly configService: ConfigService,
+    private readonly authService: AuthService,
   ) {}
 
   @Get('')
@@ -122,9 +126,13 @@ export class GoogleAuthController {
     const authorization = req.headers.authorization;
 
     const newToken = await this.googleAuthService.refreshGoogleToken(authorization);
+    
+    //COMING SOON
+    // const newToken2 = await this.userService.loginWithThirdParty(new UserDto(req.user, "GOOGLE_ENTRY"));
+    // const newToken2 = await this.authService.generateAccessToken(req.user.displayName);
 
     return {
-      message: 'Refreshed Google token',
+      message: 'Refreshed token',
       headers: {
         Authorization: newToken,
       },
@@ -135,10 +143,13 @@ export class GoogleAuthController {
   async googleCheck(@Req() req: Request) {
     const authorization = req.headers.authorization;
 
+    //VER POR FAVOR AJSDJAJS
     const email = await this.googleAuthService.checkGoogleToken(authorization);
-
+    
+    //COMING SOON
+    // const email2 = await this.authService.validateUser(req.user.);
     return {
-      message: 'Valid Google token',
+      message: 'Valid token',
       email,
     };
   }

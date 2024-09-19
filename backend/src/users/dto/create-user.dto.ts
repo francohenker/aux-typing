@@ -21,6 +21,11 @@ export class CreateUserDto {
     @IsNotEmpty()
     admin: boolean;
 
+    constructor(nickname: string, password: string, admin: boolean) {
+        this.nickname = nickname;
+        this.password = password;
+        this.admin = admin;
+    }
 
 
 }

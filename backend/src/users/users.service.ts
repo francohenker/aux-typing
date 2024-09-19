@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entities/users.entity';
 import { Repository } from 'typeorm';
@@ -92,7 +92,7 @@ export class UsersService {
         }
 
         if(bcrypt.compareSync("GOOGLE_ENTRY", userNew.password)){
-            throw new Error('Maybe user is register with google');
+            throw new Error('User or password incorrect');
         }
         
         if(bcrypt.compareSync(user.password, userNew.password)){
@@ -100,6 +100,21 @@ export class UsersService {
         }
         throw new Error('User or password incorrect');
     }
+
+    async loginWithThirdParty(user: UserDto): Promise<{ access_token: string }> {
+        const userFind = await this.usersRepository.findOneBy({
+            nickname: user.nickname,
+        });
+
+        if(!userFind){
+            const userNew = new CreateUserDto(user.nickname, "GOOGLE_ENTRY", false);
+            this.create(userNew);
+            return this.AuthService.generateAccessToken(user.nickname);
+        }
+        return this.AuthService.generateAccessToken(user.nickname);
+    }
+
+
 
     // async comparePassword(nickname: string, password: string): Promise<boolean> {
     //     const pass = this.usersRepository.query('SELECT password FROM users WHERE nickname = ?', [nickname]);
