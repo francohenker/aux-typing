@@ -19,7 +19,7 @@ function CounterWpm({inputText, originalWords = []}) {
       // const accuracyRate = wordsTyped.length > 0 ? (correctWords / wordsTyped.length) * 100 : 100;
       const accuracyRate = completedWords.length > 0 ? (correctWords / completedWords.length) * 100 : 100;
 
-      setAccuracy(accuracyRate);
+      setAccuracy(accuracyRate.toFixed(0));
       const wordsArray = inputText.trim().split(/\s+/); // Dividir palabras por espacios
 
       const wordCount = wordsArray.filter(Boolean).length; // Contar palabras no vacías

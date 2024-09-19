@@ -34,7 +34,14 @@ function TypingTestPage() {
 
   const handleKeyPress = (e) => {
     let key = e.key.toLowerCase();
-  
+
+    // Evitar que el "Enter" agregue un salto de línea
+    if (key === 'enter') {
+      e.preventDefault(); // Evita el salto de línea
+      setTypedWords(''); // Opcional: Limpiar el área de texto tras presionar Enter
+      return;
+    }
+
     // Normaliza las tildes
     const normalizedKeyMap = {
       'á': 'a',
@@ -44,7 +51,7 @@ function TypingTestPage() {
       'ú': 'u'
     };
     key = normalizedKeyMap[key] || key;
-  
+
     const keyElement = document.getElementById(key);
     if (keyElement) {
       keyElement.classList.add('highlight');
@@ -88,8 +95,7 @@ function TypingTestPage() {
       <h2 className="text-3xl font-bold mb-4 text-orange-600">Test de Tecleo</h2>
 
       <div className="counter-container">
-        <CounterWpm inputText={typedWords} />
-      
+        <CounterWpm inputText={typedWords} originalWords={words} />
       </div>
       
       <div className="words-container">
@@ -102,6 +108,7 @@ function TypingTestPage() {
         placeholder="Escribe aquí..."
         value={typedWords}
         onChange={handleTyping} // Actualiza el estado typedWords
+        onKeyPress={handleKeyPress} // Maneja la tecla Enter
       />
      
       <div className="keyboard-container">
@@ -121,7 +128,6 @@ function TypingTestPage() {
           ))}
         </div>
         <div className="keyboard-row">
-              
           {'zxcvbnm'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
               {letter}
