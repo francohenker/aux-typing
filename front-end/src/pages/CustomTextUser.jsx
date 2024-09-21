@@ -44,6 +44,5 @@ function CreateCustomText({ saveCustomText }) {
       </form>
     </div>
   );
-
 };
 export default CreateCustomText;

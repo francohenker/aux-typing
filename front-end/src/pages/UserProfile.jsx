@@ -13,6 +13,9 @@ function UserProfile({ username, profilePic }) {
     setIsOpen(false);
   };
 
+  const handleCustomText = () => {
+    window.location.href = '/CustomText';
+  };
 
   return (
     <div className="user-profile-container">
@@ -24,9 +27,9 @@ function UserProfile({ username, profilePic }) {
       {isOpen && (
         <div className="dropdown-menu">
           <ul>
-            <li>Configuración</li>
-            <li>Preferencias</li>
-            <li onClick={handleLogout}>Cerrar sesión </li>
+            <li>Settings</li>
+            <li onClick={handleCustomText}>Custom Text </li> 
+            <li onClick={handleLogout}>Logout </li>
           </ul>
         </div>
       )}
