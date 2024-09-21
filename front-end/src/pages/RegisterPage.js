@@ -5,7 +5,7 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
 
   const handleRegister = async () => {
-    const response = await fetch('http://localhost:4000/users/create', {
+    const response = await fetch(process.env.REACT_APP_ADDRESS + ':4000/users/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

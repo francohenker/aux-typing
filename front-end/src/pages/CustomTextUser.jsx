@@ -8,7 +8,7 @@ function CreateCustomText({ saveCustomText }) {
     e.preventDefault();
     // saveCustomText(customText);  // Guardar el texto en la base de datos
     // setCustomText('');  // Limpiar el área de texto después de guardar
-    const response = await fetch('http://localhost:4000/phrase/create', {
+    const response = await fetch(process.env.REACT_APP_ADDRESS + ":4000/phrase/create", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,8 +19,8 @@ function CreateCustomText({ saveCustomText }) {
     if(response.ok){
       setCustomText('');
     }else{
-      alert("No estas logeado")
-      window.location.href = '/LoginPage';
+      // alert("No estas logeado")
+      // window.location.href = '/LoginPage';
       console.log('Error al guardar el texto');
     }
     

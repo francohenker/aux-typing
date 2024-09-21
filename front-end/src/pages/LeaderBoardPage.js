@@ -7,7 +7,7 @@ function LeaderBoardPage() {
 
   useEffect(() => {
     
-    fetch('http://localhost:4000/users/max-wpm',{})
+    fetch(process.env.REACT_APP_ADDRESS + ':4000/users/max-wpm',{})
     .then(response => response.json())
     .then(data => {
       setUsers(data);
