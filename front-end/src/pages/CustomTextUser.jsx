@@ -19,8 +19,11 @@ function CreateCustomText({ saveCustomText }) {
     if(response.ok){
       setCustomText('');
     }else{
+      alert("No estas logeado")
+      window.location.href = '/LoginPage';
       console.log('Error al guardar el texto');
     }
+    
     alert(response.status);
   };
 
