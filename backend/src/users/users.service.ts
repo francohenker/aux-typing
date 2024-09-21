@@ -152,7 +152,7 @@ export class UsersService {
 
     }
     
-      extractTokenFromHeader(request): string {
+    static extractTokenFromHeader(request): string {
         const authHeader = request.headers['authorization'];
         if (authHeader && authHeader.startsWith('Bearer ')) {
           return authHeader.split(' ')[1]; // Extraer solo el token

@@ -128,6 +128,7 @@ function TypingTestPage() {
           ))}
         </div>
         <div className="keyboard-row">
+          
           {'zxcvbnm'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
               {letter}
@@ -135,8 +136,9 @@ function TypingTestPage() {
           ))}
         </div>
       </div>
+      
     </div>
-  );
+);
 }
 
 export default TypingTestPage;

@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Req, UsePipes, ValidationPipe } from '@nestjs/common';
 import { PhraseService } from './phrase.service';
 import { CreatePhraseDto } from './dto/create-phrase.dto';
 import { Phrase } from './entities/phrase.entity';
+import { UsersService } from 'src/users/users.service';
 
 @Controller('phrase')
 export class PhraseController {
@@ -21,8 +22,9 @@ export class PhraseController {
 
     @Post("/create")
     @UsePipes(new ValidationPipe({transform: true}))
-    async createPhrase(@Body() phrase: CreatePhraseDto): Promise<Phrase> {
-        return await this.PhraseService.createPhrase(phrase);
+    async createPhrase(@Body() phrase: CreatePhraseDto, @Req() req: Request): Promise<Phrase> {
+        const token = await UsersService.extractTokenFromHeader(req);
+        return await this.PhraseService.createPhrase(phrase, token);
     }
 
     @Delete("/:id")

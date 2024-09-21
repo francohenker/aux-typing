@@ -7,11 +7,7 @@ export class CreatePhraseDto {
     })
     phrase: string;
 
-    @IsNotEmpty()
-    createdBy: number;
-    
-    constructor(phrase: string, createdBy: number) {
+    constructor(phrase: string) {
         this.phrase = phrase;
-        this.createdBy = createdBy;
     }
 }

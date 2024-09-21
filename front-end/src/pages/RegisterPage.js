@@ -10,7 +10,7 @@ const RegisterPage = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ nickname, password }),
+      body: JSON.stringify({ nickname, password, admin: false}),
     });
     if (response.status === 201) {
       window.location.href = '/LoginPage';

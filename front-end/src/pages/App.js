@@ -79,6 +79,7 @@ import TypingTestPage from './TypingTestPage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import AuthCallback from './AuthCallback'; // Importa el nuevo componente
+import CustomTextUser from './CustomTextUser';
 
 function App() {
   const handleChallengeClick = (challengeNumber) => {
@@ -141,6 +142,7 @@ function App() {
       <Route path="/RegisterPage" element={<RegisterPage />} /> 
       <Route path="/leaderboards" element={<LeaderBoardPage />} />
       <Route path="/typing-test" element={<TypingTestPage />} />  
+      <Route path="/CustomText" element={<CustomTextUser />} />  
       
       {/* Ruta para manejar la redirección después del inicio de sesión con Google */}
       <Route path="/auth/google/callback" element={<AuthCallback />} />

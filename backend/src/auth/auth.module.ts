@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from 'src/users/users.module';
 import { AuthController } from './auth.controller';
@@ -8,7 +8,6 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from 'src/users/entities/users.entity';
-import { UsersService } from 'src/users/users.service';
 import { GoogleAuthController } from './google-strategy/googleAuthController';
 import { GoogleAuthService } from './google-strategy/google.auth.service';
 import { GoogleStrategy } from './strategies/google-strategy';
@@ -31,7 +30,7 @@ import { GoogleStrategy } from './strategies/google-strategy';
     }),
   ],
   controllers: [AuthController, GoogleAuthController],
-  providers: [AuthService, JwtStrategy, GoogleAuthService, GoogleStrategy, JwtStrategy],
+  providers: [AuthService, JwtStrategy, GoogleAuthService, GoogleStrategy, ConfigService],
   exports: [AuthService],
 })
 export class AuthModule {}

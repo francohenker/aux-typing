@@ -6,6 +6,9 @@ import { Users } from 'src/users/entities/users.entity';
 import { Repository } from 'typeorm';
 import { LoginUserDto } from './dto/login-user.dto';
 import * as bcrypt from 'bcrypt';
+import { ConfigService } from '@nestjs/config';
+import * as jwt from 'jsonwebtoken';
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -32,6 +35,7 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
     };
   }
+
 
   //DON'T WORK STILL
   // async signIn(user: LoginUserDto): Promise<{ access_token: string }> {

@@ -5,6 +5,10 @@ import { Repository } from 'typeorm';
 import { CreatePhraseDto } from './dto/create-phrase.dto';
 import { UsersService } from 'src/users/users.service';
 import { Users } from 'src/users/entities/users.entity';
+// import { JwtService } from '@nestjs/jwt';
+import { JwtService2 } from '../auth/jwt.service';
+import { JwtService } from '@nestjs/jwt';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class PhraseService {
@@ -12,6 +16,8 @@ export class PhraseService {
         @InjectRepository(Phrase)
         private phraseRepository: Repository<Phrase>,
         private usersService: UsersService,
+        private jwtService2: JwtService2,
+        private jwtService: JwtService,
     ) {}
 
     async getAllPhrases(): Promise<Phrase[]> {
@@ -23,9 +29,12 @@ export class PhraseService {
     }
 
     // CREATE A NEW PHRASE AND RETURN IT
-    async createPhrase(createPhraseDto: CreatePhraseDto): Promise<Phrase> {
+    async createPhrase(createPhraseDto: CreatePhraseDto, token: string): Promise<Phrase> {
         // const { phrase, createdBy } = createPhraseDto;
-        const user = await this.usersService.getUserById(createPhraseDto.createdBy); 
+        const tokenUser = await this.jwtService2.decodeToken(token);
+        const decode = this.jwtService.decode(token);
+
+        const user = await this.usersService.getUserByName(decode.name); 
         if(!user){
             throw new Error('User not found');
         }
