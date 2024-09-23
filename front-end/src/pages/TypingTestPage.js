@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/TypingTestPage.css';
-import CounterWpm from './CounterWpm';
+import CounterWpm from '../components/CounterWpm';
 
 function TypingTestPage() {
   const [words, setWords] = useState([]);

@@ -6,8 +6,8 @@ import TypingTestPage from './TypingTestPage';
 import LoginPage from './LoginPage';
 import RegisterPage from './RegisterPage';
 import AuthCallback from './AuthCallback'; // Importa el nuevo componente
-import CustomTextUser from './CustomTextUser';
-import UserProfile from './UserProfile';
+import CustomTextUser from '../components/CustomTextUser';
+import UserProfile from '../components/UserProfile';
 
 function App() {
   const handleChallengeClick = (challengeNumber) => {
