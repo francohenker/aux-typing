@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 import '../styles/CustomTextPage.css';
-import jwt_decode from 'jsonwebtoken';
-
-
-
 
 function CreateCustomText({ saveCustomText }) {
   const [customText, setCustomText] = useState('');
