@@ -77,3 +77,15 @@
     padding: 20px;
   }
   
+  .button-group {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* Espacio entre los botones */
+  }
+  
+  .save-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
