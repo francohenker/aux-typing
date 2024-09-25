@@ -121,3 +121,15 @@
   color: white;
   cursor: pointer;
 }
+
+.correct-word {
+  color: green;
+}
+
+.partial-word {
+  color: orange;
+}
+
+.incorrect-word {
+  color: red;
+}
