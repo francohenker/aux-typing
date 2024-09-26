@@ -8,8 +8,8 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Users } from 'src/users/entities/users.entity';
-import { GoogleAuthController } from './google-strategy/googleAuthController';
-import { GoogleAuthService } from './google-strategy/google.auth.service';
+import { GoogleAuthController } from './google/googleAuthController';
+import { GoogleAuthService } from './google/google.auth.service';
 import { GoogleStrategy } from './strategies/google-strategy';
 
 @Module({

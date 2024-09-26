@@ -6,7 +6,7 @@ import { Phrase } from './entities/phrase.entity';
 import { Users } from 'src/users/entities/users.entity';
 import { UsersModule } from 'src/users/users.module';
 import { JwtService } from '@nestjs/jwt';
-import { JwtService2 } from '../auth/jwt.service';
+import { JwtService2 } from '../auth/jwt/jwt.service';
 import { ConfigService } from '@nestjs/config';
 
 @Module({
