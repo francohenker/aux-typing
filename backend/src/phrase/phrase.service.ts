@@ -6,7 +6,7 @@ import { CreatePhraseDto } from './dto/create-phrase.dto';
 import { UsersService } from 'src/users/users.service';
 import { Users } from 'src/users/entities/users.entity';
 // import { JwtService } from '@nestjs/jwt';
-import { JwtService2 } from '../auth/jwt.service';
+import { JwtService2 } from '../auth/jwt/jwt.service';
 import { JwtService } from '@nestjs/jwt';
 import * as jwt from 'jsonwebtoken';
 
