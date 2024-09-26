@@ -4,9 +4,7 @@ import CounterWpm from '../components/CounterWpm';
 
 function TypingTestPage() {
   const [words, setWords] = useState([]);
-  const [typedWords, setTypedWords] = useState(''); // Estado para la entrada del usuario
-  const [wordPointer, setWordPointer] = useState(0); // Puntero para la palabra actual
-  const [userInputStream, setUserInputStream] = useState([]); // Mantener el progreso
+  const [typedWords, setTypedWords] = useState('');
   const textareaRef = useRef(null);
 
   useEffect(() => {
@@ -31,49 +29,57 @@ function TypingTestPage() {
   };
 
   const handleTyping = (e) => {
-    setTypedWords(e.target.value); // Actualiza la entrada del usuario
-
-    // Manejo de la barra espaciadora
-    if (e.key === ' ') {
-      const typedArray = e.target.value.trim().split(' ');
-      const currentWord = typedArray[typedArray.length - 1]; // La palabra que el usuario acaba de escribir
-
-      if (currentWord !== '') {
-        if (currentWord === words[wordPointer]) {
-          setUserInputStream([...userInputStream, { word: currentWord, status: 'correct' }]); // Marca como correcta
-        } else {
-          setUserInputStream([...userInputStream, { word: currentWord, status: 'incorrect' }]); // Marca como incorrecta
-        }
-        setWordPointer(wordPointer + 1); // Avanza al siguiente wordPointer
-        setTypedWords(''); // Limpia el campo después de la barra espaciadora
-      }
-    }
+    setTypedWords(e.target.value);
   };
 
-  const handleKeyDown = (e) => {
+  const handleKeyPress = (e) => {
+    let key = e.key.toLowerCase();
+
     // Evitar que el "Enter" agregue un salto de línea
-    if (e.key === 'Enter') {
-      e.preventDefault();
+    if (key === 'enter') {
+      e.preventDefault(); // Evita el salto de línea
+      setTypedWords(''); // Opcional: Limpiar el área de texto tras presionar Enter
+      return;
+    }
+
+    // Normaliza las tildes
+    const normalizedKeyMap = {
+      'á': 'a',
+      'é': 'e',
+      'í': 'i',
+      'ó': 'o',
+      'ú': 'u'
+    };
+    key = normalizedKeyMap[key] || key;
+
+    const keyElement = document.getElementById(key);
+    if (keyElement) {
+      keyElement.classList.add('highlight');
+      setTimeout(() => keyElement.classList.remove('highlight'), 100); // Menos delay
     }
   };
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, []);
 
   const renderWords = () => {
+    const typedArray = typedWords.trim().split(' ');
+
     return words.map((word, index) => {
+      const currentTypedWord = typedArray[index] || '';
+
+      // Compara la palabra escrita con la generada y establece el color.
       let className = '';
-
-      // Si la palabra ya fue procesada, mostrar su estado (correcta/incorrecta)
-      if (userInputStream[index]) {
-        className = userInputStream[index].status === 'correct' ? 'correct-word' : 'incorrect-word';
-      }
-
-      // Si el usuario está escribiendo la palabra actual
-      if (index === wordPointer) {
-        const currentTypedWord = typedWords.trim(); // La palabra que el usuario está escribiendo actualmente
-        if (word.startsWith(currentTypedWord)) {
-          className = 'partial-word'; // Se está escribiendo correctamente
-        } else if (currentTypedWord) {
-          className = 'incorrect-word'; // Se está escribiendo incorrectamente
-        }
+      if (currentTypedWord === word) {
+        className = 'correct-word'; // Verde
+      } else if (currentTypedWord && word.startsWith(currentTypedWord)) {
+        className = 'partial-word'; // Aún escribiéndola bien
+      } else if (currentTypedWord) {
+        className = 'incorrect-word'; // Rojo
       }
 
       return (
@@ -91,7 +97,7 @@ function TypingTestPage() {
       <div className="counter-container">
         <CounterWpm inputText={typedWords} originalWords={words} />
       </div>
-
+      
       <div className="words-container">
         {renderWords()}
       </div>
@@ -101,11 +107,10 @@ function TypingTestPage() {
         className="typing-input"
         placeholder="Escribe aquí..."
         value={typedWords}
-        onChange={(e) => setTypedWords(e.target.value)} // Actualiza el estado typedWords
-        onKeyDown={handleKeyDown} // Maneja la tecla Enter
-        onKeyUp={handleTyping} // Maneja la barra espaciadora
+        onChange={handleTyping} // Actualiza el estado typedWords
+        onKeyPress={handleKeyPress} // Maneja la tecla Enter
       />
-
+     
       <div className="keyboard-container">
         <div className="keyboard-row">
           {'qwertyuiop'.split('').map((letter) => (
@@ -114,7 +119,7 @@ function TypingTestPage() {
             </div>
           ))}
         </div>
-
+      
         <div className="keyboard-row">
           {'asdfghjklñ'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
@@ -123,6 +128,7 @@ function TypingTestPage() {
           ))}
         </div>
         <div className="keyboard-row">
+          
           {'zxcvbnm'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
               {letter}
@@ -130,8 +136,9 @@ function TypingTestPage() {
           ))}
         </div>
       </div>
+      
     </div>
-  );
+);
 }
 
 export default TypingTestPage;
