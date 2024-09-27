@@ -1,5 +1,9 @@
+const { default: daisyui } = require('daisyui');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+
+  
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -11,6 +15,10 @@ module.exports = {
       'foreground': '#485A6C',
     }
   },
+  
+  daisyui: {
+    themes: ["halloween"],
+  },
   plugins: [
     function ({ addUtilities }) {
       addUtilities({
@@ -19,5 +27,6 @@ module.exports = {
         },
       });
     },
+    require('daisyui'),
   ],
 }
