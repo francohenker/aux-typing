@@ -41,10 +41,10 @@ function App() {
             <div className="bg-white p-6 rounded-lg shadow-md border border-black">
               <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciar sesión / Registrarse</h2>
               <div className="flex flex-col space-y-4">
-                <button className="bg-orange-500 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600 focus:outline-none" onClick={() => window.location.href = '/LoginPage'}>
+                <button className="btn btn-primary" onClick={() => window.location.href = '/LoginPage'}>
                   Iniciar sesión
                 </button>
-                <button className="bg-orange-200 font-semibold text-white px-4 py-2 rounded-md border border-black hover:bg-orange-300 focus:outline-none" onClick={() => window.location.href = '/RegisterPage'}>
+                <button className="btn btn-primary" onClick={() => window.location.href = '/RegisterPage'}>
                   Registrarse
                 </button>
               </div>
@@ -54,12 +54,12 @@ function App() {
           {/* Botones para Leaderboard y Test de Tecleo */}
           <div className="w-full max-w-4xl mt-6 flex justify-center space-x-4 font-semibold">
             <Link to="/leaderboards">
-              <button className="bg-orange-500 text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600">
+              <button className="btn btn-primary">
                 Leaderboards
               </button>
             </Link>
             <Link to="/typing-test">
-              <button className="bg-orange-500 text-white px-4 py-2 rounded-md border border-black hover:bg-orange-600">
+              <button className="btn btn-primary">
                 Test de Tecleo
               </button>
             </Link>
