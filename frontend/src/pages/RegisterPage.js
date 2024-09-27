@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ThemeChange from '../components/ThemeChange';
+import UserProfile from '../components/UserProfile';
 
 const RegisterPage = () => {
   const [nickname, setUsername] = useState('');
@@ -21,7 +23,9 @@ const RegisterPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
+      <div className="p-6 rounded-lg shadow-md w-full max-w-sm">
+        <ThemeChange/>
+        <UserProfile/>
         <h2 className="text-2xl font-bold mb-4 text-orange-600">Registrar</h2>
         <input
           type="text"

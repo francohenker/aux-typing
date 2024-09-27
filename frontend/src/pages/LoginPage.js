@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import ThemeChange from '../components/ThemeChange';
+import UserProfile from '../components/UserProfile';
 
 const LoginPage = () => {
   const [nickname, setUsername] = useState('');
@@ -29,22 +31,24 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciar Sesión</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <div className="p-6 rounded-lg shadow-md w-full max-w-sm">
+        <ThemeChange/>
+        <UserProfile/>
+        <h2 className="text-center text-2xl font-bold mb-4 text-orange-600">Iniciar Sesión</h2>
         <input
           type="text"
           placeholder="Usuario"
           value={nickname}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full mb-3 p-2 border border-gray-300 rounded"
+          className="bg-transparent input input-bordered input-warning w-full max-w mb-2 text-center"
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          className="bg-transparent input input-bordered input-warning w-full max-w mb-2 text-center"
         />
         <button
           onClick={handleLogin}
@@ -56,7 +60,7 @@ const LoginPage = () => {
           <span className="block mb-2">O</span>
           <button
             onClick={handleGoogleLogin}
-            className="bg-blue-500 text-white px-4 py-2 rounded-md border border-black hover:bg-blue-600 w-full"
+            className="text-white px-4 py-2 rounded-md border border-black hover:bg-blue-600 w-full"
           >
             Iniciar sesión con Google
           </button>
