@@ -52,7 +52,7 @@ const LoginPage = () => {
         />
         <button
           onClick={handleLogin}
-          className="btn btn-primary btn-block"
+          className="btn btn-secondary btn-block"
         >
           Iniciar sesión
         </button>

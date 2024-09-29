@@ -17,7 +17,7 @@ module.exports = {
   },
   
   daisyui: {
-    themes: ["halloween", "light", {
+    themes: ["halloween", "bumblebee", {
       dark: {
         "primary": "#793ef9",
         "secondary": "#d926a9",

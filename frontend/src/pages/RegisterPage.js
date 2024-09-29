@@ -26,24 +26,24 @@ const RegisterPage = () => {
       <div className="p-6 rounded-lg shadow-md w-full max-w-sm">
         <ThemeChange/>
         <UserProfile/>
-        <h2 className="text-2xl font-bold mb-4 text-orange-600">Registrar</h2>
+        <h2 className="text-center text-2xl font-bold mb-4 text-orange-600">Registrar</h2>
         <input
           type="text"
           placeholder="Usuario"
           value={nickname}
           onChange={(e) => setUsername(e.target.value)}
-          className="w-full mb-3 p-2 border border-gray-300 rounded"
+          className="bg-transparent input input-bordered input-warning w-full max-w mb-2 text-center"
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full mb-4 p-2 border border-gray-300 rounded"
+          className="bg-transparent input input-bordered input-warning w-full max-w mb-2 text-center"
         />
         <button
           onClick={handleRegister}
-          className="btn btn-primary btn-block"
+          className="btn btn-secondary btn-block"
         >
           Registrar
         </button>

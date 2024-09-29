@@ -9,7 +9,6 @@ import AuthCallback from './AuthCallback'; // Importa el nuevo componente
 import CustomTextUser from '../components/CustomTextUser';
 import UserProfile from '../components/UserProfile';
 import ThemeChange from '../components/ThemeChange';
-import Navbarr from '../components/Navbarr';
 
 
 function App() {
@@ -37,16 +36,88 @@ function App() {
             <div className="p-6 rounded-lg shadow-md border border-black">
               <h2 className="text-2xl font-bold mb-4 text-orange-600">Desafíos de mecanografía</h2>
               <div className="grid grid-cols-2 gap-4">
-                {[...Array(10).keys()].map(i => (
+                
                   <div
-                    key={i}
+                    key={1}
                     onClick={() => handleChallengeClick(1)}
-                    className="bg-orange-100 p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
                   >
-                    <button className="btn btn-primary text-xl font-semibold">{`Desafío ${i + 1}`}</button>
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 1`}</button>
                     
                   </div>
-                ))} 
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 2`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 3`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 4`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 5`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 6`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 7`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 8`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 9`}</button>
+                    
+                  </div>
+                                    <div
+                    key={1}
+                    onClick={() => handleChallengeClick(1)}
+                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                  >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 10`}</button>
+                    
+                  </div>
+
               </div>
             </div>
 
@@ -54,10 +125,10 @@ function App() {
             <div className="p-6 rounded-lg shadow-md border border-black">
               <h2 className="text-2xl font-bold mb-4 text-orange-600">Iniciar sesión / Registrarse</h2>
               <div className="flex flex-col space-y-4">
-                <button className="btn btn-primary" onClick={() => window.location.href = '/LoginPage'}>
+                <button className="btn btn-secondary" onClick={() => window.location.href = '/LoginPage'}>
                   Iniciar sesión
                 </button>
-                <button className="btn btn-primary" onClick={() => window.location.href = '/RegisterPage'}>
+                <button className="btn btn-secondary" onClick={() => window.location.href = '/RegisterPage'}>
                   Registrarse
                 </button>
               </div>
@@ -67,12 +138,12 @@ function App() {
           {/* Botones para Leaderboard y Test de Tecleo */}
           <div className="w-full max-w-4xl mt-6 flex justify-center space-x-4 font-semibold">
             <Link to="/leaderboards">
-              <button className="btn btn-primary">
+              <button className="btn btn-secondary">
                 Leaderboards
               </button>
             </Link>
             <Link to="/typing-test">
-              <button className="btn btn-primary">
+              <button className="btn btn-secondary">
                 Test de Tecleo
               </button>
             </Link>

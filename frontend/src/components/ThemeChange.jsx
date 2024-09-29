@@ -1,27 +1,27 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import '../styles/ThemeChange.css';
+import useTheme from './UseTheme';
+
 
 function ThemeChange() {
-    const [isDarkMode, setIsDarkMode] = useState(false);
-    
+    // const [isDarkMode, setIsDarkMode] = useState(false);
+    const [theme, toggleTheme] = useTheme();   
     useEffect(() => {
-        const theme = isDarkMode ? 'night' : 'halloween';
-        
+        // const theme = isDarkMode ? 'halloween' : 'bumblebee';
+      
+
         document.documentElement.setAttribute('data-theme', theme);
-      }, [isDarkMode]);
-    
-      const handleThemeChange = (e) =>{
-        setIsDarkMode(e.target.checked);
-      }
-    
+        localStorage.setItem('theme', theme);
+      },);
+      
     return (
         <label className= "swap swap-rotate theme-container bg-gradient-to-t-900">
           {/* this hidden checkbox controls the state */}
           <input 
             type="checkbox" 
             className="theme-controller" 
-            onChange={handleThemeChange}
-            checked={isDarkMode} // Controla el estado del checkbox
+            onChange={toggleTheme}
+            checked={theme === 'halloween'}
             />
 
           {/* sun icon */}
