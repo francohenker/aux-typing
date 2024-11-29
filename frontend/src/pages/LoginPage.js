@@ -26,8 +26,9 @@ const LoginPage = () => {
 
   const handleGoogleLogin = () => {
     // Redirigir a la ruta de autenticación de Google en el backend
-    // window.open('http://localhost:4000/auth/google', '_self');
-    alert('COMING SOON');
+    window.open('http://localhost:4000/auth/google', '_self');
+    // alert('COMING SOON');
+    
   };
 
   return (

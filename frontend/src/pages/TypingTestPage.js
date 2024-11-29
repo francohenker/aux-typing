@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/TypingTestPage.css';
 import CounterWpm from '../components/CounterWpm';
+import ThemeChange from '../components/ThemeChange';
+import UserProfile from '../components/UserProfile';
 
 function TypingTestPage() {
   const [words, setWords] = useState([]);
@@ -91,27 +93,33 @@ function TypingTestPage() {
   };
 
   return (
-    <div className="typing-test-container">
+
+      <div className="typing-test-container" >
       <h2 className="text-3xl font-bold mb-4 text-orange-600">Test de Tecleo</h2>
 
+      <UserProfile/>
+      <ThemeChange />
       <div className="counter-container">
         <CounterWpm inputText={typedWords} originalWords={words} />
       </div>
-      
+
       <div className="words-container">
         {renderWords()}
       </div>
 
       <textarea
+        style={{ marginBottom: '20px' }}
         ref={textareaRef}
         className="typing-input"
+        // className='btn'
         placeholder="Escribe aquí..."
         value={typedWords}
         onChange={handleTyping} // Actualiza el estado typedWords
         onKeyPress={handleKeyPress} // Maneja la tecla Enter
       />
-     
-      <div className="keyboard-container">
+
+
+      <div className="keyboard-container" >
         <div className="keyboard-row">
           {'qwertyuiop'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
@@ -119,7 +127,7 @@ function TypingTestPage() {
             </div>
           ))}
         </div>
-      
+
         <div className="keyboard-row">
           {'asdfghjklñ'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
@@ -128,7 +136,7 @@ function TypingTestPage() {
           ))}
         </div>
         <div className="keyboard-row">
-          
+
           {'zxcvbnm'.split('').map((letter) => (
             <div key={letter} id={letter} className="key">
               {letter}
@@ -136,9 +144,11 @@ function TypingTestPage() {
           ))}
         </div>
       </div>
-      
+
     </div>
-);
-}
+        
+    );
+  }
+    
 
 export default TypingTestPage;

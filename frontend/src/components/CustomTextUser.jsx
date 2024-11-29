@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/CustomTextPage.css';
 import ThemeChange from './ThemeChange';
+import UserProfile from './UserProfile';
 
 function CreateCustomText({ saveCustomText }) {
   const [customText, setCustomText] = useState('');
@@ -32,6 +33,7 @@ function CreateCustomText({ saveCustomText }) {
 
   return (
     <div className="create-text-container">
+      <UserProfile/>
       <ThemeChange/>
       <h2 className="text-2xl font-bold mb-4 text-orange-600">Crea tu propio texto</h2>
       <form onSubmit={handleSubmit}>

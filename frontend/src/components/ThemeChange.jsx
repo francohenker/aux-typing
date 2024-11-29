@@ -21,7 +21,7 @@ function ThemeChange() {
             type="checkbox" 
             className="theme-controller" 
             onChange={toggleTheme}
-            checked={theme === 'halloween'}
+            checked={theme === 'night'}
             />
 
           {/* sun icon */}

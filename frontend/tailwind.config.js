@@ -17,10 +17,10 @@ module.exports = {
   },
   
   daisyui: {
-    themes: ["halloween", "bumblebee", {
-      dark: {
+    themes: ["forest", "bumblebee", {
+      night: {
         "primary": "#793ef9",
-        "secondary": "#d926a9",
+        "secondary": "#ff9f0c",
         "accent": "#1fb2a5",
         "neutral": "#2a2e37",
         "base-100": "#1f2937", // Fondo oscuro para el tema 'dark'

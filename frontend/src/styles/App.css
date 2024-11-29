@@ -9,6 +9,10 @@
   height: 100vh;
   padding: 20px;
   background-color: #f4f4f4;
+  
+
+
+
 }
 
 .auth-container,
@@ -54,6 +58,7 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
+    /* --background: #000000; */
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
@@ -116,4 +121,12 @@
 
 .challenge-box:hover {
   background-color: #ff5722; /* naranja mas oscuro para el hover */
+}
+
+
+.custom-text{
+  color: #ff7043;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 20px;
 }

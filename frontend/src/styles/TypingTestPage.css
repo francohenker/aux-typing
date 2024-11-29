@@ -39,10 +39,11 @@
   
   .typing-input {
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     height: 100px;
     padding: 10px;
     border: 1px solid #FF8C00;
+    background-color: #fff;
     border-radius: 8px;
     font-size: 18px;
   }
@@ -133,3 +134,5 @@
 .incorrect-word {
   color: red;
 }
+
+

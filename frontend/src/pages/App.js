@@ -19,105 +19,95 @@ function App() {
   return (
     <Routes >
       <Route path="/" element={
-
-
         <div className=" flex flex-col items-center justify-center min-h-screen p-6">
-
           <div className=''>
-
             <ThemeChange />
             <UserProfile />
-
-
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
             {/* Sección de desafíos de mecanografía */}
             <div className="p-6 rounded-lg shadow-md border border-black">
               <h2 className="text-2xl font-bold mb-4 text-orange-600">Desafíos de mecanografía</h2>
               <div className="grid grid-cols-2 gap-4">
-                
-                  <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 1`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 2`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 3`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 4`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 5`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 6`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 7`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 8`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                    <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 9`}</button>
-                    
-                  </div>
-                                    <div
-                    key={1}
-                    onClick={() => handleChallengeClick(1)}
-                    className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
-                  >
-                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 10`}</button>
-                    
-                  </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 1`}</button>
 
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 2`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 3`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 4`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 5`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 6`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 7`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 8`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 9`}</button>
+
+                </div>
+                <div
+                  key={1}
+                  onClick={() => handleChallengeClick(1)}
+                  className="p-4 rounded-lg shadow-sm text-center cursor-pointer border border-black hover:bg-orange-200 transition-colors duration-300"
+                >
+                  <button className="btn btn-secondary w-full text-xl font-semibold">{`Desafío 10`}</button>
+                </div>
               </div>
             </div>
 
@@ -131,7 +121,11 @@ function App() {
                 <button className="btn btn-secondary" onClick={() => window.location.href = '/RegisterPage'}>
                   Registrarse
                 </button>
+                <button className="btn btn-secondary space-y-100" onClick={() => window.location.href = '/Customtext'}>
+                  Custom Text
+                </button>
               </div>
+
             </div>
           </div>
 
@@ -151,7 +145,7 @@ function App() {
         </div>
       } />
 
-      {/* Rutas adicionales */}
+      {/* Ru</style>tas adicionales */}
       <Route path="/LoginPage" element={<LoginPage />} />
       <Route path="/RegisterPage" element={<RegisterPage />} />
       <Route path="/leaderboards" element={<LeaderBoardPage />} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import LeaderBoard from '../components/LeaderBoard';
 import ThemeChange from '../components/ThemeChange';
+import UserProfile from '../components/UserProfile';
 function LeaderBoardPage() {
   // estado para almacenar la lista de usuarios y sus puntajes
   const [users, setUsers] = useState([]);
@@ -21,6 +22,7 @@ function LeaderBoardPage() {
     <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="w-full max-w-4xl p-6">
         <LeaderBoard users={users}/>
+        <UserProfile/>
         <ThemeChange/>
       </div>
     </div>

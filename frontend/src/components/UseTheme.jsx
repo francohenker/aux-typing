@@ -4,7 +4,7 @@ function useTheme() {
   const [theme, setTheme] = useState(() => {
     // Obtener el tema guardado en localStorage, si no, por defecto es 'light'
     const savedTheme = localStorage.getItem('theme');
-    return savedTheme ? savedTheme : 'halloween';
+    return savedTheme ? savedTheme : 'bumblebee';
   });
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function useTheme() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'halloween' ? 'bumblebee' : 'halloween'));
+    setTheme((prevTheme) => (prevTheme === 'bumblebee' ? 'night' : 'bumblebee'));
   };
 
   return [theme, toggleTheme];
