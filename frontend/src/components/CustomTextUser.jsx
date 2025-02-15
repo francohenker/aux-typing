@@ -32,17 +32,16 @@ function CreateCustomText({ saveCustomText }) {
   };
 
   return (
-    <div className="create-text-container">
+    <div className="create-text-container bg-base-100 p-6 rounded-lg">
       <UserProfile/>
       <ThemeChange/>
-      <h2 className="text-2xl font-bold mb-4 text-orange-600">Crea tu propio texto</h2>
+      <h2 className="text-2xl font-bold mb-4 text-base-content">Crea tu propio texto</h2>
       <form onSubmit={handleSubmit}>
         <textarea
           value={customText}
           onChange={(e) => setCustomText(e.target.value)}
           placeholder="Escribe tu texto aquí..."
-          // className="custom-textarea"
-          className='textarea textarea-secondary w-full'
+          className='textarea textarea-secondary w-full bg-base-100'
           rows="5"
           cols="40"
         />

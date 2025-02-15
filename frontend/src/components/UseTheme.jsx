@@ -16,7 +16,7 @@ function useTheme() {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'bumblebee' ? 'night' : 'bumblebee'));
+    setTheme((prevTheme) => (prevTheme === 'bumblebee' ? 'lemonade' : 'bumblebee'));
   };
 
   return [theme, toggleTheme];

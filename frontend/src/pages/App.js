@@ -9,19 +9,23 @@ import AuthCallback from './AuthCallback'; // Importa el nuevo componente
 import CustomTextUser from '../components/CustomTextUser';
 import UserProfile from '../components/UserProfile';
 import ThemeChange from '../components/ThemeChange';
-
+import { useEffect } from 'react';
 
 function App() {
   const handleChallengeClick = (challengeNumber) => {
     console.log(`Desafío ${challengeNumber} clickeado`);
   };
 
+  useEffect(() => {
+    document.body.classList.add('bg-base-100'); // Aplica el fondo al <body>
+  }, []);
+  
   return (
     <Routes >
       <Route path="/" element={
-        <div className=" flex flex-col items-center justify-center min-h-screen p-6">
+        <div className=" flex flex-col items-center justify-center min-h-screen p-6" >
+          <ThemeChange />
           <div className=''>
-            <ThemeChange />
             <UserProfile />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">

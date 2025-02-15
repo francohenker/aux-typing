@@ -26,6 +26,15 @@ module.exports = {
         "base-100": "#1f2937", // Fondo oscuro para el tema 'dark'
         "base-200": "#111827", // Fondo secundario oscuro
         "base-content": "#ffffff",
+      },
+      lemonade:{
+        "primary": "#ff9f0c",
+        "secondary": "#1fb2a5",
+        "accent": "#793ef9",
+        "neutral": "#2a2e37",
+        "base-100": "#1e1d21", // Fondo claro para el tema 'light'
+        "base-200": "#e4e7eb", // Fondo secundario claro
+        "base-content": "#1f2937",
       }
     }]
     // themes: ["halloween","dark"],

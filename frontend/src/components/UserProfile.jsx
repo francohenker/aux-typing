@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/UserProfile.css';
+import { useNavigate } from 'react-router-dom';
 
 function UserProfile({ username, profilePic }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,11 @@ function UserProfile({ username, profilePic }) {
     setIsOpen(!isOpen);
   };
 
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsOpen(false);
+    navigate("/");
   };
 
   const handleCustomText = () => {
