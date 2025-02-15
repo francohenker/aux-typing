@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 function CounterWpm({inputText, originalWords = []}) {
   const [wpm, setWpm] = useState(0);
-  const [wordsTyped, setWordsTyped] = useState(0);
+  // const [wordsTyped, setWordsTyped] = useState(0);
+  const [setWordsTyped] = useState(0);
   const [timePassed, setTimePassed] = useState(0);
   const [accuracy, setAccuracy] = useState(100);
 
