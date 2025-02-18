@@ -21,6 +21,9 @@ const RegisterPage = () => {
     }
   };
 
+  const handlerLogin = () => {
+    window.location.href = '/LoginPage';
+  }
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="p-6 rounded-lg shadow-md w-full max-w-sm">
@@ -46,6 +49,12 @@ const RegisterPage = () => {
           className="btn btn-secondary btn-block"
         >
           Registrar
+        </button>
+        <button
+          onClick={handlerLogin}
+          className="bg-transparent input input-bordered input-warning w-full max-w mt-4 text-center"
+        >
+          Iniciar sesión
         </button>
       </div>
     </div>

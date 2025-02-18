@@ -8,6 +8,7 @@ const LoginPage = () => {
 
   const handleLogin = async () => {
     
+    try {
     const response = await fetch(process.env.REACT_APP_ADDRESS + ':4000/users/login', {
       method: 'POST',
       headers: {
@@ -16,22 +17,23 @@ const LoginPage = () => {
       body: JSON.stringify({ nickname, password }),
     });
     
-    try {
       const data = await response.json();
         localStorage.setItem('token', data.access_token);
         window.location.href = '/';
     }
     catch (error) {
-      alert('Login failed', error);
+      alert('Login failed, please try again', error);
     }
   };
 
     const handleGoogleLogin = () => {
       // Redirigir a la ruta de autenticación de Google en el backend
-      window.open('http://localhost:4000/auth/google', '_self');
+      window.open(process.env.REACT_APP_ADDRESS + ':4000/auth/google', '_self');
       // alert('COMING SOON');
-
     };
+    const register = () => {
+      window.location.href = '/RegisterPage';
+    }
 
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
@@ -63,9 +65,16 @@ const LoginPage = () => {
             <span className="block mb-2">O</span>
             <button
               onClick={handleGoogleLogin}
-              className="text-white px-4 py-2 rounded-md border border-black hover:bg-blue-600 w-full"
+              className='btn btn-secondary btn-block'
             >
               Iniciar sesión con Google
+            </button>
+            <p className="text-center mt-8">¿No tienes cuenta? Registrate!</p>
+            <button
+              onClick={register}
+              className="bg-transparent input input-bordered input-warning w-full max-w mb-4 text-center"
+              >
+              Registrarse
             </button>
           </div>
         </div>
